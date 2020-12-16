@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace MyProject.UserControlHelper
     /// </summary>
     public partial class CustomUserControl : UserControl
     {
+
+        public ControlBarViewModel ViewModel { get; set; }
         public CustomUserControl()
         {
             InitializeComponent();
+            this.DataContext = ViewModel = new ControlBarViewModel();
         }
     }
 }

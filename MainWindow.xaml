@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
-        Title="Phần Mềm Quản Lý Bán Hàng" Height="726" Width="1284" Background="#FF875DB9"
+        Height="726" Width="1284" Background="#FF875DB9"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:UserControlHelper="clr-namespace:MyProject.UserControlHelper"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,6 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="mainWindow"
+        Title="Hệ Thống Quản Lý Bán Hàng"
         DataContext="{StaticResource MainViewModel}"
         ResizeMode="NoResize"
         WindowStyle="None">
@@ -24,7 +25,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <UserControlHelper:CustomUserControl></UserControlHelper:CustomUserControl>
+            <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=mainWindow}"></UserControlHelper:CustomUserControl>
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel>

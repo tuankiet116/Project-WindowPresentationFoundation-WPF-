@@ -5,37 +5,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyProject.UserControlHelper"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="UserControlBar">
     <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDown">
+                <i:InvokeCommandAction Command="{Binding DragUserControlBar}"
+                                       CommandParameter="{Binding ElementName=UserControlBar}"></i:InvokeCommandAction>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <materialDesign:Card>
             <materialDesign:ColorZone
-                Mode="PrimaryLight"
-                Padding="16">
-                <DockPanel>
-                    <materialDesign:PopupBox
-                        DockPanel.Dock="Right"
-                        PlacementMode="BottomAndAlignRightEdges">
-                        <ListBox>
-                            <ListBoxItem>
-                                Hello World
-                            </ListBoxItem>
-                            <ListBoxItem>
-                                Nice Popup
-                            </ListBoxItem>
-                            <ListBoxItem>
-                                Goodbye.
-                            </ListBoxItem>
-                        </ListBox>
-                    </materialDesign:PopupBox>
+                Mode="PrimaryLight">
+                <DockPanel Background="Transparent">
+                    <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
+                        <Button ToolTip="Minimize"
+                                Command="{Binding MinimizeWindow}"
+                                CommandParameter="{Binding ElementName=UserControlBar}">
+                            <materialDesign:PackIcon Kind="WindowMinimize" Height="25" Width="25"/>
+                        </Button>
+                        <Button ToolTip="Maximize"
+                                Command="{Binding MaximizeWindow}"
+                                CommandParameter="{Binding ElementName=UserControlBar}">
+                            <materialDesign:PackIcon Kind="WindowMaximize" Height="25" Width="25"/>
+                        </Button>
+                        <Button ToolTip="Close" 
+                                Command = "{Binding CloseWindow}" 
+                                CommandParameter="{Binding ElementName=UserControlBar}">
+                            <materialDesign:PackIcon Kind="WindowClose" Height="25" Width="25"/>
+                        </Button>
+                    </StackPanel>
+                    
                     <StackPanel
+                        DockPanel.Dock="Left"
                         Orientation="Horizontal">
                         <ToggleButton
                             Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock
                             VerticalAlignment="Center"
-                            Margin="16 0 0 0">
-                            Material Design In XAML Toolkit
+                            Margin="16 0 0 0"
+                            Text="{Binding Tag, ElementName=UserControlBar}">
                         </TextBlock>
                     </StackPanel>
                 </DockPanel>

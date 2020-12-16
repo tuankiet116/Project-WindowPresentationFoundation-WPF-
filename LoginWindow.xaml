@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
-        Title="Đăng Nhập" Height="588" Width="400"
+        Height="588" Width="400"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:UserControlHelper ="clr-namespace:MyProject.UserControlHelper"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,7 +15,9 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
-        WindowStyle="None">
+        WindowStyle="None"
+        Title="Đăng Nhập"
+        Name="loginWindow">
     <Grid HorizontalAlignment="Center" Width="401"
           Background="BlueViolet" Margin="0,0,-1,-1">
         <Grid.RowDefinitions>
@@ -28,9 +30,9 @@
             </Style>
         </Grid.Resources>
         <Grid Grid.Row="0" Margin="-10 0 -10 0">
-            <UserControlHelper:CustomUserControl></UserControlHelper:CustomUserControl>
+            <UserControlHelper:CustomUserControl Tag="{Binding Title,ElementName=loginWindow}"></UserControlHelper:CustomUserControl>
         </Grid>
-        <materialDesign:Card Width="350" Height="356" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="25,58,25,28">
+        <materialDesign:Card Width="350" Height="372" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="26,88,25,41">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="118*"/>
