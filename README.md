@@ -4,6 +4,7 @@ Version:
 - Material Design Themes: 3.2.0
 - Material Design Color: 1.2.7
 - System.Windows.Interactivity.WPF: 2.0.20525
+
 In this project has use:
 + Material Design in XAML
 + WPF-Interaction
