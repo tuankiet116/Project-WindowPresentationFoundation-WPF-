@@ -30,7 +30,7 @@
             </Style>
         </Grid.Resources>
         <Grid Grid.Row="0" Margin="-10 0 -10 0">
-            <UserControlHelper:CustomUserControl Tag="{Binding Title,ElementName=loginWindow}"></UserControlHelper:CustomUserControl>
+            <UserControlHelper:CustomUserControl Tag="{Binding Title,ElementName=loginWindow}" Loaded="CustomUserControl_Loaded"></UserControlHelper:CustomUserControl>
         </Grid>
         <materialDesign:Card Width="350" Height="372" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="26,88,25,41">
             <Grid>
