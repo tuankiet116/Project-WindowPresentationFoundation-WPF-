@@ -10,9 +10,10 @@ namespace MyProject.ViewModel
 {
     public class MainViewModel:BaseViewModel
     {
+        public ICommand CustomerWindow { get; set; }
         public MainViewModel()
         {
-
+            CustomerWindow = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
         }
     }
 }
