@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
-        Height="726" Width="1284" Background="#FF875DB9"
+        Height="700" Width="1000"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:UserControlHelper="clr-namespace:MyProject.UserControlHelper"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -19,7 +19,7 @@
         DataContext="{StaticResource MainViewModel}"
         ResizeMode="NoResize"
         WindowStyle="None">
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -27,12 +27,299 @@
         <Grid Grid.Row="0">
             <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=mainWindow}"></UserControlHelper:CustomUserControl>
         </Grid>
+
         <Grid Grid.Row="1">
-            <StackPanel>
-                <materialDesign:Card Padding="32" Margin="16">
-                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
-                </materialDesign:Card>
-            </StackPanel>
+            <materialDesign:Card Background="LightSkyBlue">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" ToolTip="Nhập Kho" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Nhập Kho</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="InboxArrowDown" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="1" ToolTip="Xuất Kho" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Xuất Kho</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="InboxArrowUp" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="2" ToolTip="Sản Phẩm" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Sản Phẩm</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="PackageVariant" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="3" ToolTip="Nhà Cung Cấp" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Nhà Cung Cấp</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="Handshake" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="4" ToolTip="Khách Hàng" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Khách Hàng</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="HumanMale" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="5" ToolTip="Tài Khoản" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Tài Khoản</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="AccountCircle" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="6" ToolTip="Nhập Kho" Height="70">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Foreground="Black">Nhập Kho</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Foreground="Black" 
+                                                             Kind="InboxArrowDown" Height="25" 
+                                                             Width="25"/>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Margin" Value="5"></Setter>
+                                </Style>
+                            </Grid.Resources>
+
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock>Chọn Ngày Bắt Đầu:</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" HorizontalAlignment="Left">
+                                    <DatePicker
+                                    Width="200"
+                                    materialDesign:HintAssist.Hint="Chọn Ngày Bắt Đầu"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock>Chọn Ngày Kết Thúc:</TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1" HorizontalAlignment="Left">
+                                    <DatePicker
+                                    Width="200"
+                                    materialDesign:HintAssist.Hint="Chọn Ngày Kết Thúc"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="2" HorizontalAlignment="Center">
+                                <Button
+                                    Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                                    ToolTip="MaterialDesignFlatMidButton" Content="Lọc Kết Quả">
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:Card Background="#03a9f4"
+                            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                            Padding="0"
+                            Width="auto" Margin="10" Grid.Column="0">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock  Margin="16 16 16 4"
+                                        Style="{StaticResource MaterialDesignBody2TextBlock}">
+                                        Số Lượng Nhập:
+                                    </TextBlock>
+                                    <materialDesign:PopupBox>
+
+                                    </materialDesign:PopupBox>
+                                </StackPanel>
+
+                                <Separator Grid.Row="1" 
+                                           Style="{StaticResource MaterialDesignLightSeparator}" />
+                                <TextBlock Grid.Row="2"
+                                          Margin="16 0 16 8"
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                          HorizontalAlignment="Center">
+                                    4344343
+                                </TextBlock>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Background="#03a9f4"
+                            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                            Padding="0"
+                            Width="auto" Margin="10" Grid.Column="1">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock  Margin="16 16 16 4"
+                                        Style="{StaticResource MaterialDesignBody2TextBlock}">
+                                        Số Lượng Xuất:
+                                    </TextBlock>
+                                    <materialDesign:PopupBox>
+
+                                    </materialDesign:PopupBox>
+                                </StackPanel>
+
+                                <Separator Grid.Row="1" 
+                                           Style="{StaticResource MaterialDesignLightSeparator}" />
+                                <TextBlock Grid.Row="2"
+                                          Margin="16 0 16 8"
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                          HorizontalAlignment="Center">
+                                    4344343
+                                </TextBlock>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Background="#03a9f4"
+                            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                            Padding="0"
+                            Width="auto" Margin="10" Grid.Column="2">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock  Margin="16 16 16 4"
+                                        Style="{StaticResource MaterialDesignBody2TextBlock}">
+                                        Số Lượng Tồn:
+                                    </TextBlock>
+                                    <materialDesign:PopupBox>
+
+                                    </materialDesign:PopupBox>
+                                </StackPanel>
+
+                                <Separator Grid.Row="1" 
+                                           Style="{StaticResource MaterialDesignLightSeparator}" />
+                                <TextBlock Grid.Row="2"
+                                          Margin="16 0 16 8"
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                          HorizontalAlignment="Center">
+                                    4344343
+                                </TextBlock>
+                            </Grid>
+                        </materialDesign:Card>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </Window>
