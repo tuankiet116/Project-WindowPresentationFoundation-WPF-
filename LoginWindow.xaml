@@ -40,16 +40,33 @@
                     <RowDefinition Height="165*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <TextBox x:Name="NameTextBox" 
-                             Height="40"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <materialDesign:PackIcon Kind="AccountCircle" Width="30" Height="30" Margin="0 50 -10 0" Foreground="BlueViolet"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBox x:Name="NameTextBox"
                              materialDesign:HintAssist.Hint="Tên Đăng Nhập"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,36,0,42"/>
+                    </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <PasswordBox x:Name="FloatingPasswordBox"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <materialDesign:PackIcon Kind="Lock" Width="30" Height="30" Margin="0 25 -10 0" Foreground="BlueViolet"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <PasswordBox x:Name="FloatingPasswordBox"
                         Height="40"
                         materialDesign:HintAssist.Hint="Mật Khẩu"
                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    </Grid>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
