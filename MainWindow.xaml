@@ -81,7 +81,7 @@
                                 </Grid>
                             </Grid>
                         </Button>
-                        <Button Grid.Column="2" ToolTip="Sản Phẩm" Height="70">
+                        <Button Grid.Column="2" ToolTip="Sản Phẩm" Height="70" Command="{Binding ProductWindow}">
                             <Grid Background="Transparent">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
