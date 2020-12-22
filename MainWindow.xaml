@@ -25,7 +25,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=mainWindow}" Loaded="CustomUserControl_Loaded"></UserControlHelper:CustomUserControl>
+            <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=mainWindow}"></UserControlHelper:CustomUserControl>
         </Grid>
 
         <Grid Grid.Row="1">
