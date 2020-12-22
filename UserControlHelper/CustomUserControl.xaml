@@ -37,86 +37,12 @@
                             <materialDesign:PackIcon Kind="WindowClose" Height="25" Width="25"/>
                         </Button>
                     </StackPanel>
-                    
+
                     <StackPanel
                         DockPanel.Dock="Left"
                         Orientation="Horizontal">
                         <ToggleButton
-                            Style="{DynamicResource MaterialDesignHamburgerToggleButton}">
-                        </ToggleButton>
-
-                        <!--<materialDesign:DrawerHost
-                            BorderBrush="{DynamicResource MaterialDesignDivider}" Height="45">
-                            <materialDesign:DrawerHost.Style>
-                                <Style
-                                    TargetType="materialDesign:DrawerHost"
-                                    BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
-                                    <Style.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding IsChecked, ElementName=BackgroundToggle}"
-                                            Value="True">
-                                            <Setter
-                                                Property="OverlayBackground"
-                                                Value="{DynamicResource PrimaryHueMidBrush}" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </materialDesign:DrawerHost.Style>
-                            <materialDesign:DrawerHost.LeftDrawerContent>
-                                <StackPanel Margin="16" Height="400">
-                                    <TextBlock Margin="4" HorizontalAlignment="Center">
-                                        LEFT FIELD
-                                    </TextBlock>
-                                    <Button
-                                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                        CommandParameter="{x:Static Dock.Left}"
-                                        Margin="4"
-                                        HorizontalAlignment="Center"
-                                        Style="{DynamicResource MaterialDesignFlatButton}">
-                                        CLOSE THIS
-                                    </Button>
-                                    <Button
-                                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                        Margin="4"
-                                        HorizontalAlignment="Center"
-                                        Style="{DynamicResource MaterialDesignFlatButton}">
-                                        CLOSE ALL
-                                    </Button>
-                                </StackPanel>
-                            </materialDesign:DrawerHost.LeftDrawerContent>
-                            <Grid>
-                                <Grid>
-                                    <Button
-                                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                                        CommandParameter="{x:Static Dock.Left}">
-                                        <materialDesign:PackIcon Kind="ArrowLeft" />
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </materialDesign:DrawerHost>-->
-                        
-                        <!--<Menu IsMainMenu="True" Width="auto">
-                            <MenuItem Height="auto" Width="auto">
-                                <MenuItem.Icon>
-                                    <materialDesign:PackIcon Kind="menu" Width="30" Height="30"/>
-                                </MenuItem.Icon>
-                                <MenuItem Header="_Cut" Command="Cut">
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind="ContentCut" />
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="_Copy" Command="Copy">
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind="ContentCopy" />
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="_Paste" Command="Paste">
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind="ContentPaste" />
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                            </MenuItem>
-                        </Menu>-->
+                           
 
                         <TextBlock
                             VerticalAlignment="Center"
@@ -129,3 +55,4 @@
         </materialDesign:Card>
     </Grid>
 </UserControl>
+
