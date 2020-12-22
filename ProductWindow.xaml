@@ -55,7 +55,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0" Margin="5">
                                     <TextBox
-                                        Text="{Binding DisplayName}"
+                                        Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Tên sản phẩm"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                         VerticalAlignment="Center"
@@ -63,15 +63,22 @@
                                         Margin="10 0 15 0"/>
                                 </Grid>
                                 <Grid Grid.Row="1" Margin="5">
-                                    <TextBox
+                                    <ComboBox
                                         materialDesign:HintAssist.Hint="Nhà cung cấp"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                        VerticalAlignment="Center"
-                                        Foreground="BlueViolet"
-                                        Margin="10 0 15 0"/>
+                                        ItemsSource="{Binding Supplier.DisplayName, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectedItem="{Binding SelectedSupplier}"
+                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                        Foreground="BlueViolet" Margin="10 0 15 0">
+                                        <ComboBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel />
+                                            </ItemsPanelTemplate>
+                                        </ComboBox.ItemsPanel>
+                                    </ComboBox>
                                 </Grid>
                                 <Grid Grid.Row="2" Margin="5">
                                     <TextBox
+                                        Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Số lượng"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                         VerticalAlignment="Center"
@@ -184,16 +191,16 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
-                                    DisplayMemberBinding="{Binding }"
+                                    DisplayMemberBinding="{Binding ID}"
                                     Header="ID" />
                                 <GridViewColumn
-                                    DisplayMemberBinding="{Binding }"
+                                    DisplayMemberBinding="{Binding DisplayName}"
                                     Header="Tên sản phẩm" />
                                 <GridViewColumn
-                                    DisplayMemberBinding="{Binding }"
+                                    DisplayMemberBinding="{Binding Supplier.DisplayName}"
                                     Header="Nhà cung cấp" />
                                 <GridViewColumn
-                                    DisplayMemberBinding="{Binding }"
+                                    DisplayMemberBinding="{Binding Amount}"
                                     Header="Số lượng" />
                             </GridView>
                         </ListView.View>
