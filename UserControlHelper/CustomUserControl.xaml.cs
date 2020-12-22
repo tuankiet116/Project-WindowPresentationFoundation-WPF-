@@ -21,7 +21,6 @@ namespace MyProject.UserControlHelper
     /// </summary>
     public partial class CustomUserControl : UserControl
     {
-
         public ControlBarViewModel ViewModel { get; set; }
         public CustomUserControl()
         {
