@@ -48,14 +48,14 @@ create table InputTable(
 go
 create table InputDetailTable(
 	ID int identity(1,1) primary key not null,
+	ID_Input int not null,
 	ID_Product int not null,
-	ID_Supplier int not null,
 	PriceInput int not null,
 	PriceSale int not null,
 	Amount int not null,
 	Status nvarchar(max),
-	foreign key(ID_Product) references ProductTable(ID),
-	foreign key(ID_Supplier) references SupplierTable(ID)
+	foreign key(ID_Input) references InputTable(ID),
+	foreign key(ID_Product) references ProductTable(ID)
 )
 go
 create table OutputTable(
@@ -67,12 +67,12 @@ create table OutputTable(
 go 
 create table OutPutDetailTable(
 	ID int identity(1,1) primary key not null,
+	ID_Output int not null,
 	ID_Product int not null,
 	ID_Customer int not null,
-	ID_InputDetail int not null,
 	Count int not null,
 	Status nvarchar(max),
+	foreign key(ID_Output) references OutputTable(ID),
 	foreign key(ID_Product) references ProductTable(ID),
-	foreign key(ID_Customer) references CustomerTable(ID),
-	foreign key(ID_InputDetail) references InputDeTailTable(ID)
+	foreign key(ID_Customer) references CustomerTable(ID)
 )
