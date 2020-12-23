@@ -22,12 +22,13 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <materialDesign:ColorZone Padding="16" Background="BlueViolet">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="485"></ColumnDefinition>
-                            <ColumnDefinition Width="485"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
+                        
                         <Grid Grid.Column="0" HorizontalAlignment="Left">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -41,9 +42,10 @@
                                 </TextBlock>
                             </Grid>
                         </Grid>
+
                         <Grid Grid.Column="1">
                             <materialDesign:Chip
-                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 80 0">
+                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
                                 <materialDesign:Chip.Icon>
                                     <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
                                 </materialDesign:Chip.Icon>
@@ -210,11 +212,11 @@
 
                             <Grid Grid.Row="0">
                                 <TextBox
-                               materialDesign:HintAssist.Hint="Tìm kiếm"
-                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                               VerticalAlignment="Center"
-                               Foreground="BlueViolet"
-                               Margin="10 5 10 5"/>
+                                   materialDesign:HintAssist.Hint="Tìm kiếm"
+                                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                   VerticalAlignment="Center"
+                                   Foreground="BlueViolet"
+                                   Margin="10 5 10 5"/>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Button Command="{Binding SearchCommand}" Width="150" Margin="5 5 8 20">

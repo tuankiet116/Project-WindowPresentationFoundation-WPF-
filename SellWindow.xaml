@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        d:DesignHeight="800" d:DesignWidth="1000"
+        d:DesignHeight="850" d:DesignWidth="1000"
         Name="wdow"
         Title="Phần Mềm Quản Lý Bán Hàng">
     <Grid>
@@ -22,12 +22,13 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <materialDesign:ColorZone Padding="16" Background="BlueViolet">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="485"></ColumnDefinition>
-                            <ColumnDefinition Width="485"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
+
                         <Grid Grid.Column="0" HorizontalAlignment="Left">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -37,13 +38,14 @@
                                 <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="QUẢN LÝ NHẬP KHO" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
+                                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="QUẢN LÝ BÁN HÀNG" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
                                 </TextBlock>
                             </Grid>
                         </Grid>
+
                         <Grid Grid.Column="1">
                             <materialDesign:Chip
-                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 80 0">
+                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 30 0">
                                 <materialDesign:Chip.Icon>
                                     <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
                                 </materialDesign:Chip.Icon>
@@ -56,35 +58,185 @@
 
         <Grid Grid.Row="1" Background="LightSkyBlue">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="650"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <materialDesign:Card Grid.Column="0" Margin="10" Background="White">
-                <ListView ItemsSource="{Binding }"  materialDesign:ButtonAssist.CornerRadius="30">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Code" />
-                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
-                            <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description" />
-                            <GridViewColumn Header="Options">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ComboBox Width="100">
-                                            <ComboBoxItem Content="Test" />
-                                            <ComboBoxItem Content="Test2" />
-                                            <ComboBoxItem Content="Test3" />
-                                        </ComboBox>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </materialDesign:Card>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
 
-            <Grid Grid.Column="1">
+                <Grid Grid.Row="0">
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2" Padding="12" Margin="10 10 10 0" Width="200" HorizontalAlignment="Left" Background="BlueViolet">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <materialDesign:PackIcon Kind="Archive" Foreground="White"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBlock Margin="8 0 0 0" Foreground="White" FontWeight="Bold"> Danh sách sản phẩm </TextBlock>
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0" Background="White" Margin="10 10 10 0">
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Nhập sản phẩm"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            VerticalAlignment="Center"
+                            materialDesign:ButtonAssist.CornerRadius="50"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="1" Background="BlueViolet" Margin=" 0 9 10 0" Height="47">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <materialDesign:PackIcon Kind="Magnify" Width="25" Height="25"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBlock Margin="5 5 0 0" FontSize="15" FontWeight="Bold"> Tìm Kiếm </TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                </Grid>
                 
+                <materialDesign:Card Grid.Row="2" Margin="10" Background="White">
+                    <ListView ItemsSource="{Binding }" materialDesign:ButtonAssist.CornerRadius="30">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="ID" Width="80"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên sản phẩm" Width="150"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Nhà cung cấp" Width="150"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Số lượng" Width="150"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </materialDesign:Card>
+            </Grid>
+     
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2" Padding="12" Margin="10 10 10 0" Width="200" HorizontalAlignment="Left" Background="BlueViolet">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <materialDesign:PackIcon Kind="CartArrowDown" Foreground="White"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBlock Margin="8 0 0 0" Foreground="White" FontWeight="Bold"> Hóa đơn </TextBlock>
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                  <!--<FlowDocumentScrollViewer>
+                        <FlowDocument>
+                            <Paragraph FontSize="14pt">Top 5 Gold Winner's of Common Wealth Games:</Paragraph>
+                            <Table>
+                                <TableRowGroup Paragraph.TextAlignment="left">
+                                    <TableRow FontWeight="Bold" >
+                                        <TableCell>
+                                            <Paragraph>Rank</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>Name</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>Medals</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Paragraph>1</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>Australia</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>74</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Paragraph>2</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>India</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>38</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Paragraph>3</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>England</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>37</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Paragraph>4</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>Canada</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>26</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Paragraph>5</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>South Africa</Paragraph>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Paragraph>12</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableRowGroup>
+                            </Table>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer> -->
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
