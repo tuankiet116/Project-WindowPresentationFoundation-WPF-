@@ -37,17 +37,8 @@
                             <ColumnDefinition Width="485"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="TRANG CHỦ" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
-                                </TextBlock>
-                            </Grid>
+                            <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="TRANG CHỦ" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
+                            </TextBlock>
                         </Grid>
                         <Grid Grid.Column="1">
                             <materialDesign:Chip
@@ -92,7 +83,8 @@
                                     Width="250"
                                     Height="120"
                                     materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners">
+                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                    Command="{Binding ImportWindow}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"></RowDefinition>
@@ -126,12 +118,12 @@
                                         </Grid.RowDefinitions>
 
                                         <Grid Grid.Row="0">
-                                            <TextBlock Text="Xuất kho" FontSize="25" Padding="0 0 0 5"/>
+                                            <TextBlock Text="Bán hàng" FontSize="25" Padding="0 0 0 5"/>
                                         </Grid>
 
                                         <Grid Grid.Row="1">
                                             <materialDesign:PackIcon Foreground="White" 
-                                                Kind="InboxArrowUp" Height="30" Width="30" HorizontalAlignment="Center"/>
+                                                Kind="Cart" Height="30" Width="30" HorizontalAlignment="Center"/>
                                         </Grid>
                                     </Grid>
                                 </Button>
