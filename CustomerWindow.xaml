@@ -15,17 +15,22 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="wdow"
-        Title="Quản lý khách hàng"
-        DataContext="{StaticResource MainViewModel}"
-        ResizeMode="NoResize"
-        WindowStyle="None">
+        Title="Phần Mềm Quản Lý Bán Hàng"
+        DataContext="{StaticResource MainViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=wdow}"></UserControlHelper:CustomUserControl>
+            <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
+                <StackPanel Orientation="Horizontal">
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">
+                        Quản lý khách hàng
+                    </TextBlock>
+                </StackPanel>
+            </materialDesign:ColorZone>
         </Grid>
 
         <Grid Grid.Row="1" Background="LightSkyBlue">

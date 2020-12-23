@@ -23,8 +23,6 @@ namespace MyProject
         public MainWindow()
         {
             InitializeComponent();
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.ShowDialog();
         }
     }
 }
