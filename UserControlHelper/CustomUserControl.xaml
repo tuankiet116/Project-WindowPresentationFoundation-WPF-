@@ -42,8 +42,7 @@
                         DockPanel.Dock="Left"
                         Orientation="Horizontal">
                         <ToggleButton
-                           
-
+                            Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock
                             VerticalAlignment="Center"
                             Margin="16 0 0 0"

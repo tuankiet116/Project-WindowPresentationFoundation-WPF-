@@ -15,16 +15,14 @@
          FontFamily="{DynamicResource MaterialDesignFont}"
          d:DesignHeight="500" d:DesignWidth="1000"
          Name="wdow"
-         Title="Quản Lý Nhà cung cấp"
-         ResizeMode="NoResize"
-         WindowStyle="None">
+         Title="Quản Lý Nhà cung cấp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=wdow}"></UserControlHelper:CustomUserControl>
+            
         </Grid>
 
         <Grid Grid.Row="1" Background="LightSkyBlue">
