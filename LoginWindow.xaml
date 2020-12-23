@@ -14,7 +14,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Đăng Nhập">
+        Title="Phần Mềm Quản Lý Bán Hàng">
     <Grid HorizontalAlignment="Center" Width="401"
           Background="BlueViolet" Margin="0,0,-1,-1">
         <Grid.RowDefinitions>
@@ -28,8 +28,8 @@
         </Grid.Resources>
         <Grid Grid.Row="0" Margin="-10 0 -10 0">
             <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="Đăng Nhập">
+                <StackPanel Orientation="Horizontal" Width="150">
+                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="ĐĂNG NHẬP" Foreground="White" FontWeight="Bold" Padding="30 2 0 0">
                     </TextBlock>
                 </StackPanel>
             </materialDesign:ColorZone>

@@ -23,12 +23,35 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
+            <materialDesign:ColorZone Padding="16" Background="BlueViolet">
                 <StackPanel Orientation="Horizontal">
-                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">
-                        Quản lý khách hàng
-                    </TextBlock>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="485"></ColumnDefinition>
+                            <ColumnDefinition Width="485"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="QUẢN LÝ KHÁCH HÀNG" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
+                                </TextBlock>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <materialDesign:Chip
+                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 80 0">
+                                <materialDesign:Chip.Icon>
+                                    <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
+                                </materialDesign:Chip.Icon>
+                            </materialDesign:Chip>
+                        </Grid>
+                    </Grid>
                 </StackPanel>
             </materialDesign:ColorZone>
         </Grid>
