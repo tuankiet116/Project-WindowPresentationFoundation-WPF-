@@ -5,26 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-         xmlns:UserControlHelper="clr-namespace:MyProject.UserControlHelper" 
-         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-         TextElement.FontWeight="Regular"
-         TextElement.FontSize="13"
-         TextOptions.TextFormattingMode="Ideal" 
-         TextOptions.TextRenderingMode="Auto"
-         FontFamily="{DynamicResource MaterialDesignFont}"
-         d:DesignHeight="500" d:DesignWidth="1000"
-         Name="wdow"
-         Title="Quản Lý Nhà cung cấp"
-         ResizeMode="NoResize"
-         WindowStyle="None">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        d:DesignHeight="500" d:DesignWidth="1000"
+        Name="wdow"
+        Title="Hệ Thống Quản Lý Bán Hàng">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <UserControlHelper:CustomUserControl Tag="{Binding Title, ElementName=wdow}"></UserControlHelper:CustomUserControl>
+            <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
+                <StackPanel Orientation="Horizontal">
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">
+                        Quản Lý Nhà Cung Cấp
+                    </TextBlock>
+                </StackPanel>
+            </materialDesign:ColorZone>
         </Grid>
 
         <Grid Grid.Row="1" Background="LightSkyBlue">
