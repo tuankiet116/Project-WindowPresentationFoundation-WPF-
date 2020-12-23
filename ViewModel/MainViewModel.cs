@@ -10,6 +10,7 @@ namespace MyProject.ViewModel
 {
     public class MainViewModel:BaseViewModel
     {
+        public ICommand LoadMainWindow { get; set; }
         public ICommand CustomerWindow { get; set; }
         public ICommand ProductWindow { get; set; }
         public ICommand SupplierWindow { get; set; }
@@ -18,6 +19,7 @@ namespace MyProject.ViewModel
             CustomerWindow = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
             ProductWindow = new RelayCommand<object>((p) => { return true; }, (p) => { ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
             SupplierWindow = new RelayCommand<object>((p) => { return true; }, (p) => { SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
+            LoadMainWindow = new RelayCommand<object>((p) => { return true; }, (p) => { })
         }
     }
 }
