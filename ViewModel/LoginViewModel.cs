@@ -43,13 +43,20 @@ namespace MyProject.ViewModel
         private void Login(Window p)
         {
             string passwordEncode = MD5Hash(Base64Encode(password));
-            int count = DataProvider.Ins.Entities.UserTable.Where(x => x.UserName == userName && x.Password == passwordEncode).Count();
+            var user = DataProvider.Ins.Entities.UserTable.Where(x => x.UserName == userName && x.Password == passwordEncode);
             if (p == null)
             {
                 return;
             }
+            int count = user.Count();
             if (count > 0)
             {
+                int ID = 0;
+                foreach(var item in user)
+                {
+                    ID = item.ID;
+                }
+                App.Current.Properties.Add("UserID", ID);
                 isLogin = true;
                 p.Close();
             }

@@ -4,4 +4,5 @@
                     xmlns:viewmodel="clr-namespace:MyProject.ViewModel">
     <viewmodel:MainViewModel x:Key="MainViewModel"></viewmodel:MainViewModel>
     <viewmodel:LoginViewModel x:Key="LoginViewModel"></viewmodel:LoginViewModel>
+    <viewmodel:StatisticalViewModel x:Key="StatisticalViewModel"></viewmodel:StatisticalViewModel>
 </ResourceDictionary>

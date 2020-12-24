@@ -186,6 +186,8 @@
     <Compile Include="ImportWindow.xaml.cs">
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\StatiscalModel.cs" />
+    <Compile Include="Model\UserLogin.cs" />
     <Compile Include="SellWindow.xaml.cs">
       <DependentUpon>SellWindow.xaml</DependentUpon>
     </Compile>
@@ -248,6 +250,7 @@
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\StatisticalViewModel.cs" />
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
