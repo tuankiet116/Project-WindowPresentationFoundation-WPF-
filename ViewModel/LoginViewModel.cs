@@ -15,13 +15,13 @@ namespace MyProject.ViewModel
         private string _UserName;
         private string _Password;
 
-        public string userName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
-        public string password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
+        public string userName { get { return _UserName; } set { _UserName = value; OnPropertyChanged(); } }
+        public string password { get { return _Password; } set { _Password = value; OnPropertyChanged(); } }
         public Boolean isLogin { get; set; }
         private bool _IsDialogOpen;
         public bool IsDialogOpen
         {
-            get => _IsDialogOpen;
+            get { return _IsDialogOpen; }
             set {this._IsDialogOpen = value;  OnPropertyChanged(); }
         }
 

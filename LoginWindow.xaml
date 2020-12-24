@@ -63,8 +63,8 @@
             </Grid.Resources>
             <Grid Grid.Row="0" Margin="-10 0 -10 0">
                 <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="Đăng Nhập">
+                    <StackPanel>
+                        <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="Đăng Nhập" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center">
                         </TextBlock>
                     </StackPanel>
                 </materialDesign:ColorZone>

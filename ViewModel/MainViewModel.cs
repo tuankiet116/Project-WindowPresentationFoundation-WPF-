@@ -15,20 +15,20 @@ namespace MyProject.ViewModel
         public ICommand ImportWindow { get; set; }
         public ICommand SellWindow { get; set; }
         public ICommand CustomerWindow { get; set; }
-        public ICommand ProductWindow { get; set; }
+        public ICommand ProductWindow { get; set; } 
         public ICommand SupplierWindow { get; set; }
         public ICommand StatisticalWindow { get; set; }
 
         private bool isLoaded = false;
         public MainViewModel()
         {
-            ImportWindow = new RelayCommand<object>((p) => { return true; }, (p) => { ImportWindow wd = new ImportWindow(); wd.ShowDialog(); });
-            SellWindow = new RelayCommand<object>((p) => { return true; }, (p) => { SellWindow wd = new SellWindow(); wd.ShowDialog(); });
-            CustomerWindow = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
-            ProductWindow = new RelayCommand<object>((p) => { return true; }, (p) => { ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
-            SupplierWindow = new RelayCommand<object>((p) => { return true; }, (p) => { SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
-            StatisticalWindow = new RelayCommand<object>((p) => { return true; }, (p) => { StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
-            LoadMainWindow = new RelayCommand<object>((p) => { return true; }, (p) =>
+            ImportWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { ImportWindow wd = new ImportWindow(); wd.ShowDialog(); });
+            SellWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { SellWindow wd = new SellWindow(); wd.ShowDialog(); });
+            CustomerWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
+            ProductWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
+            SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
+            StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
+            LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)
                 {
