@@ -17,7 +17,7 @@ namespace MyProject.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CustomerTable()
         {
-            this.OutPutDetailTable = new HashSet<OutPutDetailTable>();
+            this.OutputTable = new HashSet<OutputTable>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace MyProject.Model
         public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OutPutDetailTable> OutPutDetailTable { get; set; }
+        public virtual ICollection<OutputTable> OutputTable { get; set; }
     }
 }

@@ -31,12 +31,19 @@ create table SupplierTable(
 	ContractDay date not null,
 )
 go
+create table UnitTable(
+	ID int identity(1,1) primary key not null,
+	Descriptions nvarchar(max) not null,
+)
+go
 create table ProductTable(
 	ID int identity(1,1) primary key not null,
 	DisplayName nvarchar(max) not null,
 	Image varchar(max) not null,
+	ID_Unit int not null,
 	ID_Supplier int not null,
 	foreign key(ID_Supplier) references SupplierTable(ID),
+	foreign key(ID_Unit) references UnitTable(ID)
 )
 go
 create table InputTable(
@@ -61,18 +68,18 @@ go
 create table OutputTable(
 	ID int identity(1,1) primary key not null,
 	ID_User int not null,
+	ID_Customer int not null,
 	DateOutput date not null,
-	foreign key(ID_User) references UserTable(ID)
+	foreign key(ID_User) references UserTable(ID),
+	foreign key(ID_Customer) references CustomerTable(ID)
 )
 go 
 create table OutPutDetailTable(
 	ID int identity(1,1) primary key not null,
 	ID_Output int not null,
 	ID_Product int not null,
-	ID_Customer int not null,
 	Count int not null,
 	Status nvarchar(max),
 	foreign key(ID_Output) references OutputTable(ID),
-	foreign key(ID_Product) references ProductTable(ID),
-	foreign key(ID_Customer) references CustomerTable(ID)
+	foreign key(ID_Product) references ProductTable(ID)
 )

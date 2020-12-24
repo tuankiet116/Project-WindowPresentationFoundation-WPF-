@@ -4,24 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff3eeb5cd0ca4ee59b0bc975d2485290" Name="Diagram1" ZoomLevel="48">
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.CustomerTable" Width="1.5" PointX="5.25" PointY="11.125" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.InputDetailTable" Width="1.5" PointX="7.5" PointY="5.25" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.InputTable" Width="1.5" PointX="5.25" PointY="4.625" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.OutPutDetailTable" Width="1.5" PointX="7.5" PointY="1.5" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.OutputTable" Width="1.5" PointX="5.25" PointY="1.875" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.ProductTable" Width="1.5" PointX="5.25" PointY="8" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.RoleTable" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.SupplierTable" Width="1.5" PointX="3" PointY="8.125" />
-        <EntityTypeShape EntityType="ManagerStoreWPFModel.UserTable" Width="1.5" PointX="3" PointY="3" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Cu__3B75D760" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__InputDeta__ID_In__32E0915F" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__33D4B598" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__InputTabl__ID_Us__300424B4" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__398D8EEE" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__3A81B327" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutputTab__ID_Us__36B12243" />
-        <AssociationConnector Association="ManagerStoreWPFModel.FK__ProductTa__ID_Su__2D27B809" />
+      <Diagram DiagramId="ff3eeb5cd0ca4ee59b0bc975d2485290" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.CustomerTable" Width="1.5" PointX="3.75" PointY="1.625" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.InputDetailTable" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.InputTable" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.OutPutDetailTable" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.OutputTable" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.ProductTable" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.RoleTable" Width="1.5" PointX="1.5" PointY="12.125" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.SupplierTable" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.UnitTable" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="ManagerStoreWPFModel.UserTable" Width="1.5" PointX="0.75" PointY="8.625" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__3A81B327" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__InputDeta__ID_In__35BCFE0A" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__36B12243" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__InputTabl__ID_Us__32E0915F" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__3D5E1FD2" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__3E52440B" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__OutputTab__ID_Us__398D8EEE" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__ProductTa__ID_Su__2F10007B" />
+        <AssociationConnector Association="ManagerStoreWPFModel.FK__ProductTa__ID_Un__300424B4" />
         <AssociationConnector Association="ManagerStoreWPFModel.FK__UserTable__ID_Ro__286302EC" />
       </Diagram>
     </edmx:Diagrams>

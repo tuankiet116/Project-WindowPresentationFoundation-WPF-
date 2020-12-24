@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
         Height="588" Width="400"
@@ -13,87 +14,140 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Phần Mềm Quản Lý Bán Hàng">
-    <Grid HorizontalAlignment="Center" Width="401"
-          Background="BlueViolet" Margin="0,0,-1,-1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.Resources>
-            <Style TargetType="Grid">
-                <Setter Property="Margin" Value="10 0 10 0"></Setter>
-            </Style>
-        </Grid.Resources>
-        <Grid Grid.Row="0" Margin="-10 0 -10 0">
-            <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
-                <StackPanel Orientation="Horizontal" Width="150">
-                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="ĐĂNG NHẬP" Foreground="White" FontWeight="Bold" Padding="30 2 0 0">
-                    </TextBlock>
-                </StackPanel>
-            </materialDesign:ColorZone>
-        </Grid>
-        <materialDesign:Card Width="350" Height="372" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="26,88,25,41">
+        Name="loginWindow"
+        Title="Đăng Nhập"
+        DataContext="{StaticResource LoginViewModel}">
+    <materialDesign:DialogHost x:Name="DialogHost" IsOpen="{Binding IsDialogOpen}"
+            CloseOnClickAway="True"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            OverlayBackground="{DynamicResource PrimaryHueDarkBrush}">
+        <materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="118*"/>
-                    <RowDefinition Height="73*"/>
-                    <RowDefinition Height="165*"/>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <materialDesign:PackIcon Kind="AccountCircle" Width="30" Height="30" Margin="0 50 -10 0" Foreground="BlueViolet"/>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <TextBox x:Name="NameTextBox"
-                             materialDesign:HintAssist.Hint="Tên Đăng Nhập"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,36,0,42"/>
-                    </Grid>
+                    <TextBlock Text="Vui Lòng Nhập Đúng Tài Khoản Và Mật Khẩu" Margin="20"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <materialDesign:PackIcon Kind="Lock" Width="30" Height="30" Margin="0 25 -10 0" Foreground="BlueViolet"/>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <PasswordBox x:Name="FloatingPasswordBox"
-                        Height="40"
-                        materialDesign:HintAssist.Hint="Mật Khẩu"
-                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Button
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            Background="BlueViolet"
-                            Width="110"
-                            ToolTip="Resource name: MaterialDesignRaisedButton"
-                            Content="_Đăng Nhập">
-                        </Button>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Button
-                            Background="BlueViolet"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            Width="110"
-                            ToolTip="Resource name: MaterialDesignRaisedButton"
-                            Content="_Thoát">
-                        </Button>
-                    </Grid>
+                    <Button Grid.Column="0"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            ToolTip="MaterialDesignFlatMidButton"
+                            Command="{Binding CloseDialogCommand}" 
+                            CommandParameter="{Binding ElementName=loginWindow}"
+                            Content="_Okay"/>
+                    <Button Grid.Column="1"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            ToolTip="MaterialDesignFlatMidButton"
+                            Command="{Binding ExitCommand}" Content="_Thoát"
+                            CommandParameter="{Binding ElementName=loginWindow}"/>
                 </Grid>
             </Grid>
-        </materialDesign:Card>
-    </Grid>
+        </materialDesign:DialogHost.DialogContent>
+            <Grid HorizontalAlignment="Center" Width="401"
+              Background="BlueViolet" Margin="0,0,-1,-1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Grid">
+                    <Setter Property="Margin" Value="10 0 10 0"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid Grid.Row="0" Margin="-10 0 -10 0">
+                <materialDesign:ColorZone Mode="PrimaryLight" Padding="16">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="Đăng Nhập">
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+            </Grid>
+            <materialDesign:Card Width="350" Height="372" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="26,88,25,41">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="AccountCircle" Width="30" Height="30" Margin="0 50 -10 0" Foreground="BlueViolet"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox x:Name="NameTextBox"
+                                 materialDesign:HintAssist.Hint="Tên Đăng Nhập"
+                                 Text="{Binding userName}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,36,0,42"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <materialDesign:PackIcon Kind="Lock" Width="30" Height="30" Margin="0 25 -10 0" Foreground="BlueViolet"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <PasswordBox x:Name="FloatingPasswordBox"
+                            Height="40"
+                            materialDesign:HintAssist.Hint="Mật Khẩu"
+                            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                           CommandParameter="{Binding ElementName=FloatingPasswordBox}"></i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                        
+                            
+                                <Button
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Background="BlueViolet"
+                                Width="110"
+                                ToolTip="Resource name: MaterialDesignRaisedButton"
+                                Content="_Đăng Nhập"
+                                Command="{Binding loginCommand}"
+                                CommandParameter="{Binding ElementName=loginWindow}">
+                                </Button>
+                        
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button
+                                Background="BlueViolet"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="110"
+                                ToolTip="Resource name: MaterialDesignRaisedButton"
+                                Content="_Thoát">
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                    
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </materialDesign:DialogHost>
 </Window>

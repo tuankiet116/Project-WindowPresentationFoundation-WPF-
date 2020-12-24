@@ -17,11 +17,9 @@ namespace MyProject.Model
         public int ID { get; set; }
         public int ID_Output { get; set; }
         public int ID_Product { get; set; }
-        public int ID_Customer { get; set; }
         public int Count { get; set; }
         public string Status { get; set; }
     
-        public virtual CustomerTable CustomerTable { get; set; }
         public virtual OutputTable OutputTable { get; set; }
         public virtual ProductTable ProductTable { get; set; }
     }

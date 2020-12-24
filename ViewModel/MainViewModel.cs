@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace MyProject.ViewModel
 {
@@ -32,8 +33,23 @@ namespace MyProject.ViewModel
                 if (!isLoaded)
                 {
                     isLoaded = true;
+                    if (p == null)
+                        return;
+
+                    p.Hide();
                     LoginWindow wd = new LoginWindow();
                     wd.ShowDialog();
+                    var loginViewModel = wd.DataContext as LoginViewModel;
+                    if (loginViewModel == null)
+                        return;
+                    if (loginViewModel.isLogin)
+                    {
+                        p.Show();
+                    }
+                    else
+                    {
+                        p.Close();
+                    }
                 }
             });
         }

@@ -12,22 +12,18 @@ namespace MyProject.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class OutputTable
+    public partial class UnitTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OutputTable()
+        public UnitTable()
         {
-            this.OutPutDetailTable = new HashSet<OutPutDetailTable>();
+            this.ProductTable = new HashSet<ProductTable>();
         }
     
         public int ID { get; set; }
-        public int ID_User { get; set; }
-        public int ID_Customer { get; set; }
-        public System.DateTime DateOutput { get; set; }
+        public string Descriptions { get; set; }
     
-        public virtual CustomerTable CustomerTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OutPutDetailTable> OutPutDetailTable { get; set; }
-        public virtual UserTable UserTable { get; set; }
+        public virtual ICollection<ProductTable> ProductTable { get; set; }
     }
 }

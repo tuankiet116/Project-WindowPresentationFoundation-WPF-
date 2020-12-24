@@ -33,6 +33,7 @@ namespace MyProject.Model
         public virtual DbSet<ProductTable> ProductTable { get; set; }
         public virtual DbSet<RoleTable> RoleTable { get; set; }
         public virtual DbSet<SupplierTable> SupplierTable { get; set; }
+        public virtual DbSet<UnitTable> UnitTable { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
     }
 }
