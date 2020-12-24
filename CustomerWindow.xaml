@@ -14,7 +14,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="wdow"
-        Title="Phần Mềm Quản Lý Bán Hàng"
+        Title="Hệ Thống Quản Lý Bán Hàng"
         DataContext="{StaticResource MainViewModel}">
     <Grid>
         <Grid.RowDefinitions>

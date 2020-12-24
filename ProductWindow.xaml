@@ -14,7 +14,7 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="500" d:DesignWidth="1000"
              Name="wdow"
-             Title="Phần Mềm Quản Lý Bán Hàng">
+             Title="Hệ Thống Quản Lý Bán Hàng">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -93,7 +93,7 @@
                                 </Grid>
                                 <Grid Grid.Row="1" Margin="5">
                                     <ComboBox
-                                        materialDesign:HintAssist.Hint="Nhà cung cấp"
+                                        materialDesign:HintAssist.Hint="Mã đơn vị"
                                         ItemsSource="{Binding Supplier.DisplayName, UpdateSourceTrigger=PropertyChanged}"
                                         SelectedItem="{Binding SelectedSupplier}"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
@@ -108,7 +108,7 @@
                                 <Grid Grid.Row="2" Margin="5">
                                     <TextBox
                                         Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
-                                        materialDesign:HintAssist.Hint="Số lượng"
+                                        materialDesign:HintAssist.Hint="Mã nhà cung cấp"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                         VerticalAlignment="Center"
                                         Foreground="BlueViolet"
@@ -228,10 +228,13 @@
                                     Header="Tên sản phẩm" />
                                 <GridViewColumn
                                     DisplayMemberBinding="{Binding Supplier.DisplayName}"
-                                    Header="Nhà cung cấp" />
+                                    Header="Mã đơn vị" />
                                 <GridViewColumn
                                     DisplayMemberBinding="{Binding Amount}"
-                                    Header="Số lượng" />
+                                    Header="Mã nhà cung cấp" />
+                                <GridViewColumn
+                                    DisplayMemberBinding="{Binding Amount}"
+                                    Header="Hình ảnh" />
                             </GridView>
                         </ListView.View>
                     </ListView>

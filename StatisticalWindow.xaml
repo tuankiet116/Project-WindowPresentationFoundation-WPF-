@@ -14,7 +14,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         d:DesignHeight="800" d:DesignWidth="1200"
         Name="wdow"
-        Title="Phần Mềm Quản Lý Bán Hàng"
+        Title="Hệ Thống Quản Lý Bán Hàng"
         DataContext="{StaticResource StatisticalViewModel}">
     <Grid>
         <Grid.RowDefinitions>

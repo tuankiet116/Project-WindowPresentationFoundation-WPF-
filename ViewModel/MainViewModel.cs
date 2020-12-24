@@ -23,7 +23,7 @@ namespace MyProject.ViewModel
         public ICommand ImportWindow { get; set; }
         public ICommand SellWindow { get; set; }
         public ICommand CustomerWindow { get; set; }
-        public ICommand ProductWindow { get; set; }
+        public ICommand ProductWindow { get; set; } 
         public ICommand SupplierWindow { get; set; }
         public ICommand StatisticalWindow { get; set; }
         public ICommand CloseDialogCommand { get; set; }
