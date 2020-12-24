@@ -24,6 +24,7 @@ namespace MyProject.Model
         public int ID { get; set; }
         public string DisplayName { get; set; }
         public string Image { get; set; }
+        public int ID_Unit { get; set; }
         public int ID_Supplier { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -31,5 +32,6 @@ namespace MyProject.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OutPutDetailTable> OutPutDetailTable { get; set; }
         public virtual SupplierTable SupplierTable { get; set; }
+        public virtual UnitTable UnitTable { get; set; }
     }
 }
