@@ -17,9 +17,9 @@ namespace MyProject
     /// <summary>
     /// Interaction logic for UserWindow.xaml
     /// </summary>
-    public partial class UserWindow : Window
+    public partial class UserListWindow : Window
     {
-        public UserWindow()
+        public UserListWindow()
         {
             InitializeComponent();
         }
