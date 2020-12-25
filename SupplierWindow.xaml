@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         d:DesignHeight="500" d:DesignWidth="1000"
-        Name="wdow"
+        Name="wdow" DataContext="{StaticResource SupplierViewModel}"
         Title="Hệ Thống Quản Lý Bán Hàng">
     <Grid>
         <Grid.RowDefinitions>
@@ -45,7 +45,7 @@
 
                         <Grid Grid.Column="1">
                             <materialDesign:Chip
-                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
+                                Content="{Binding UserDisplayName}" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
                                 <materialDesign:Chip.Icon>
                                     <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
                                 </materialDesign:Chip.Icon>
@@ -107,7 +107,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0" Margin="5">
                                     <TextBox
-                                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                                        Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Số điện thoại"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                         VerticalAlignment="Center"
@@ -222,8 +222,8 @@
             <materialDesign:Card Grid.Row="1" Margin="10 0 10 10">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ListView
-                        ItemsSource="{Binding List}"
-                        SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        ItemsSource="{Binding ListSupplier}"
+                        SelectedItem="{Binding SelectedItems, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
