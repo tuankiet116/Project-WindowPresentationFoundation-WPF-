@@ -67,13 +67,76 @@
                             </TextBlock>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <materialDesign:Chip
+                                <materialDesign:Chip
                                 Content="{Binding UserDisplayName}" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
-                                <materialDesign:Chip.Icon>
-                                    <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
-                                </materialDesign:Chip.Icon>
-                            </materialDesign:Chip>
-                        </Grid>
+                                    <materialDesign:Chip.Icon>
+                                        <Grid>
+                                            <materialDesign:PackIcon Kind="Account" Width="25" Height="25" Margin="4 0 0 0"/>
+                                            <materialDesign:PopupBox
+                                                DockPanel.Dock="Right"
+                                                PlacementMode="BottomAndAlignRightEdges" Opacity="0">
+                                                <ListBox>
+                                                    <ListBoxItem>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid Grid.Column="0">
+                                                                <materialDesign:PackIcon Kind="AccountCircle" Margin="0 2 0 0"/>
+                                                            </Grid>
+
+                                                            <Grid Grid.Column="1">
+                                                                <TextBlock Margin="5 0 0 0"> Tài Khoản </TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid Grid.Column="0">
+                                                                <materialDesign:PackIcon Kind="LockOpen" Margin="0 2 0 0"/>
+                                                            </Grid>
+
+                                                            <Grid Grid.Column="1">
+                                                                
+                                                                <TextBlock Margin="5 0 0 0"> Đổi Mật Khẩu <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="Click">
+                                                                        <i:InvokeCommandAction Command="{Binding AccountWindowCommand}"
+                                                                            ></i:InvokeCommandAction>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers></TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </ListBoxItem>
+                                                    <Separator/>
+                                                    <ListBoxItem>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid Grid.Column="0">
+                                                                <materialDesign:PackIcon Kind="Logout" Margin="0 2 0 0"/>
+                                                            </Grid>
+
+                                                            <Grid Grid.Column="1">
+                                                                <TextBlock Margin="5 0 0 0" Text="{Binding RunExtendedDialogCommand}"> Đăng Xuất</TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </ListBoxItem>
+                                                </ListBox>
+                                            </materialDesign:PopupBox>
+                                        </Grid>
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
+                            </Grid>
                     </Grid>
                 </StackPanel>
             </materialDesign:ColorZone>
@@ -253,7 +316,7 @@
                                         Margin="0 -70 0 0"
                                         materialDesign:ButtonAssist.CornerRadius="10"
                                         ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                        Command="{Binding UserWindow}">
+                                        Command="{Binding UnitWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -261,12 +324,12 @@
                                             </Grid.RowDefinitions>
 
                                             <Grid Grid.Row="0">
-                                                <TextBlock Text="Tài khoản" FontSize="25" Padding="0 0 0 5"/>
+                                                <TextBlock Text="Đơn vị" FontSize="25" Padding="0 0 0 5"/>
                                             </Grid>
 
                                             <Grid Grid.Row="1">
                                                 <materialDesign:PackIcon Foreground="White" 
-                                                Kind="AccountCircle" Height="30" Width="30" HorizontalAlignment="Center"/>
+                                                Kind="Ballot" Height="30" Width="30" HorizontalAlignment="Center"/>
                                             </Grid>
                                         </Grid>
                                     </Button>
@@ -316,7 +379,7 @@
                                         Margin="0 -132 0 0"
                                         materialDesign:ButtonAssist.CornerRadius="10"
                                         ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                        Command="{Binding UnitWindow}">
+                                        Command="{Binding UserListWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -324,12 +387,12 @@
                                             </Grid.RowDefinitions>
 
                                             <Grid Grid.Row="0">
-                                                <TextBlock Text="Đơn vị" FontSize="25" Padding="0 0 0 5"/>
+                                                <TextBlock Text="Danh sách tài khoản" FontSize="25" Padding="0 0 0 5"/>
                                             </Grid>
 
                                             <Grid Grid.Row="1">
                                                 <materialDesign:PackIcon Foreground="White" 
-                                                Kind="Ballot" Height="30" Width="30" HorizontalAlignment="Center"/>
+                                                Kind="AccountCircle" Height="30" Width="30" HorizontalAlignment="Center"/>
                                             </Grid>
                                         </Grid>
                                     </Button>

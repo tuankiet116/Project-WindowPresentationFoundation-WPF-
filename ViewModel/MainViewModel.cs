@@ -27,7 +27,9 @@ namespace MyProject.ViewModel
         public ICommand SupplierWindow { get; set; }
         public ICommand StatisticalWindow { get; set; }
         public ICommand UnitWindow { get; set; }
+        public ICommand UserListWindow { get; set; }
         public ICommand CloseDialogCommand { get; set; }
+        public ICommand AccountWindowCommand { get; set; }
 
         private bool isLoaded = false;
         public MainViewModel()
@@ -39,7 +41,9 @@ namespace MyProject.ViewModel
             SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
             StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
             UnitWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
+            UserListWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } UserListWindow wd = new UserListWindow(); wd.ShowDialog(); });
             CloseDialogCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { IsDialogOpen = false; });
+            /*AccountWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } AccountWindowCommand wd = new AccountWindowCommand(); wd.ShowDialog(); });*/
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)

@@ -138,7 +138,7 @@
                                     </Button>
                                 </Grid>
                                 <Grid Grid.Row="2">
-                                    <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 5">
+                                    <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 6">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition></ColumnDefinition>

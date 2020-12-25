@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ManagerStoreWPFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ManagerStoreWPFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CustomerTable">
           <Key>
             <PropertyRef Name="ID" />
@@ -97,7 +97,7 @@
           <Property Name="UserName" Type="varchar(max)" Nullable="false" />
           <Property Name="Password" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK__InputDeta__ID_In__35BCFE0A">
+        <Association Name="FK__InputDeta__ID_In__1FCDBCEB">
           <End Role="InputTable" Type="Self.InputTable" Multiplicity="1" />
           <End Role="InputDetailTable" Type="Self.InputDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,7 +109,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputDeta__ID_Pr__36B12243">
+        <Association Name="FK__InputDeta__ID_Pr__20C1E124">
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
           <End Role="InputDetailTable" Type="Self.InputDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputTabl__ID_Us__32E0915F">
+        <Association Name="FK__InputTabl__ID_Us__1B0907CE">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
           <End Role="InputTable" Type="Self.InputTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutPutDet__ID_Ou__3D5E1FD2">
+        <Association Name="FK__OutPutDet__ID_Ou__2B3F6F97">
           <End Role="OutputTable" Type="Self.OutputTable" Multiplicity="1" />
           <End Role="OutPutDetailTable" Type="Self.OutPutDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,7 +145,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutPutDet__ID_Pr__3E52440B">
+        <Association Name="FK__OutPutDet__ID_Pr__2C3393D0">
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="1" />
           <End Role="OutPutDetailTable" Type="Self.OutPutDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -157,7 +157,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputTab__ID_Cu__3A81B327">
+        <Association Name="FK__OutputTab__ID_Cu__267ABA7A">
           <End Role="CustomerTable" Type="Self.CustomerTable" Multiplicity="1" />
           <End Role="OutputTable" Type="Self.OutputTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,7 +169,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputTab__ID_Us__398D8EEE">
+        <Association Name="FK__OutputTab__ID_Us__25869641">
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
           <End Role="OutputTable" Type="Self.OutputTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -181,7 +181,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductTa__ID_Su__2F10007B">
+        <Association Name="FK__ProductTa__ID_Su__15502E78">
           <End Role="SupplierTable" Type="Self.SupplierTable" Multiplicity="1" />
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,7 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductTa__ID_Un__300424B4">
+        <Association Name="FK__ProductTa__ID_Un__164452B1">
           <End Role="UnitTable" Type="Self.UnitTable" Multiplicity="1" />
           <End Role="ProductTable" Type="Self.ProductTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -205,7 +205,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserTable__ID_Ro__286302EC">
+        <Association Name="FK__UserTable__ID_Ro__08EA5793">
           <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="0..1" />
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -228,43 +228,43 @@
           <EntitySet Name="SupplierTable" EntityType="Self.SupplierTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitTable" EntityType="Self.UnitTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__InputDeta__ID_In__35BCFE0A" Association="Self.FK__InputDeta__ID_In__35BCFE0A">
+          <AssociationSet Name="FK__InputDeta__ID_In__1FCDBCEB" Association="Self.FK__InputDeta__ID_In__1FCDBCEB">
             <End Role="InputTable" EntitySet="InputTable" />
             <End Role="InputDetailTable" EntitySet="InputDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputDeta__ID_Pr__36B12243" Association="Self.FK__InputDeta__ID_Pr__36B12243">
+          <AssociationSet Name="FK__InputDeta__ID_Pr__20C1E124" Association="Self.FK__InputDeta__ID_Pr__20C1E124">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="InputDetailTable" EntitySet="InputDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputTabl__ID_Us__32E0915F" Association="Self.FK__InputTabl__ID_Us__32E0915F">
+          <AssociationSet Name="FK__InputTabl__ID_Us__1B0907CE" Association="Self.FK__InputTabl__ID_Us__1B0907CE">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="InputTable" EntitySet="InputTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutPutDet__ID_Ou__3D5E1FD2" Association="Self.FK__OutPutDet__ID_Ou__3D5E1FD2">
+          <AssociationSet Name="FK__OutPutDet__ID_Ou__2B3F6F97" Association="Self.FK__OutPutDet__ID_Ou__2B3F6F97">
             <End Role="OutputTable" EntitySet="OutputTable" />
             <End Role="OutPutDetailTable" EntitySet="OutPutDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutPutDet__ID_Pr__3E52440B" Association="Self.FK__OutPutDet__ID_Pr__3E52440B">
+          <AssociationSet Name="FK__OutPutDet__ID_Pr__2C3393D0" Association="Self.FK__OutPutDet__ID_Pr__2C3393D0">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="OutPutDetailTable" EntitySet="OutPutDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputTab__ID_Cu__3A81B327" Association="Self.FK__OutputTab__ID_Cu__3A81B327">
+          <AssociationSet Name="FK__OutputTab__ID_Cu__267ABA7A" Association="Self.FK__OutputTab__ID_Cu__267ABA7A">
             <End Role="CustomerTable" EntitySet="CustomerTable" />
             <End Role="OutputTable" EntitySet="OutputTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputTab__ID_Us__398D8EEE" Association="Self.FK__OutputTab__ID_Us__398D8EEE">
+          <AssociationSet Name="FK__OutputTab__ID_Us__25869641" Association="Self.FK__OutputTab__ID_Us__25869641">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="OutputTable" EntitySet="OutputTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductTa__ID_Su__2F10007B" Association="Self.FK__ProductTa__ID_Su__2F10007B">
+          <AssociationSet Name="FK__ProductTa__ID_Su__15502E78" Association="Self.FK__ProductTa__ID_Su__15502E78">
             <End Role="SupplierTable" EntitySet="SupplierTable" />
             <End Role="ProductTable" EntitySet="ProductTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductTa__ID_Un__300424B4" Association="Self.FK__ProductTa__ID_Un__300424B4">
+          <AssociationSet Name="FK__ProductTa__ID_Un__164452B1" Association="Self.FK__ProductTa__ID_Un__164452B1">
             <End Role="UnitTable" EntitySet="UnitTable" />
             <End Role="ProductTable" EntitySet="ProductTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserTable__ID_Ro__286302EC" Association="Self.FK__UserTable__ID_Ro__286302EC">
+          <AssociationSet Name="FK__UserTable__ID_Ro__08EA5793" Association="Self.FK__UserTable__ID_Ro__08EA5793">
             <End Role="RoleTable" EntitySet="RoleTable" />
             <End Role="UserTable" EntitySet="UserTable" />
           </AssociationSet>
@@ -284,43 +284,43 @@
           <EntitySet Name="SupplierTable" EntityType="ManagerStoreWPFModel.SupplierTable" />
           <EntitySet Name="UnitTable" EntityType="ManagerStoreWPFModel.UnitTable" />
           <EntitySet Name="UserTable" EntityType="ManagerStoreWPFModel.UserTable" />
-          <AssociationSet Name="FK__OutputTab__ID_Cu__3A81B327" Association="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__3A81B327">
+          <AssociationSet Name="FK__OutputTab__ID_Cu__267ABA7A" Association="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__267ABA7A">
             <End Role="CustomerTable" EntitySet="CustomerTable" />
             <End Role="OutputTable" EntitySet="OutputTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputDeta__ID_In__35BCFE0A" Association="ManagerStoreWPFModel.FK__InputDeta__ID_In__35BCFE0A">
+          <AssociationSet Name="FK__InputDeta__ID_In__1FCDBCEB" Association="ManagerStoreWPFModel.FK__InputDeta__ID_In__1FCDBCEB">
             <End Role="InputTable" EntitySet="InputTable" />
             <End Role="InputDetailTable" EntitySet="InputDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputDeta__ID_Pr__36B12243" Association="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__36B12243">
+          <AssociationSet Name="FK__InputDeta__ID_Pr__20C1E124" Association="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__20C1E124">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="InputDetailTable" EntitySet="InputDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__InputTabl__ID_Us__32E0915F" Association="ManagerStoreWPFModel.FK__InputTabl__ID_Us__32E0915F">
+          <AssociationSet Name="FK__InputTabl__ID_Us__1B0907CE" Association="ManagerStoreWPFModel.FK__InputTabl__ID_Us__1B0907CE">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="InputTable" EntitySet="InputTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutPutDet__ID_Ou__3D5E1FD2" Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__3D5E1FD2">
+          <AssociationSet Name="FK__OutPutDet__ID_Ou__2B3F6F97" Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__2B3F6F97">
             <End Role="OutputTable" EntitySet="OutputTable" />
             <End Role="OutPutDetailTable" EntitySet="OutPutDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutPutDet__ID_Pr__3E52440B" Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__3E52440B">
+          <AssociationSet Name="FK__OutPutDet__ID_Pr__2C3393D0" Association="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__2C3393D0">
             <End Role="ProductTable" EntitySet="ProductTable" />
             <End Role="OutPutDetailTable" EntitySet="OutPutDetailTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__OutputTab__ID_Us__398D8EEE" Association="ManagerStoreWPFModel.FK__OutputTab__ID_Us__398D8EEE">
+          <AssociationSet Name="FK__OutputTab__ID_Us__25869641" Association="ManagerStoreWPFModel.FK__OutputTab__ID_Us__25869641">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="OutputTable" EntitySet="OutputTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductTa__ID_Su__2F10007B" Association="ManagerStoreWPFModel.FK__ProductTa__ID_Su__2F10007B">
+          <AssociationSet Name="FK__ProductTa__ID_Su__15502E78" Association="ManagerStoreWPFModel.FK__ProductTa__ID_Su__15502E78">
             <End Role="SupplierTable" EntitySet="SupplierTable" />
             <End Role="ProductTable" EntitySet="ProductTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductTa__ID_Un__300424B4" Association="ManagerStoreWPFModel.FK__ProductTa__ID_Un__300424B4">
+          <AssociationSet Name="FK__ProductTa__ID_Un__164452B1" Association="ManagerStoreWPFModel.FK__ProductTa__ID_Un__164452B1">
             <End Role="UnitTable" EntitySet="UnitTable" />
             <End Role="ProductTable" EntitySet="ProductTable" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserTable__ID_Ro__286302EC" Association="ManagerStoreWPFModel.FK__UserTable__ID_Ro__286302EC">
+          <AssociationSet Name="FK__UserTable__ID_Ro__08EA5793" Association="ManagerStoreWPFModel.FK__UserTable__ID_Ro__08EA5793">
             <End Role="RoleTable" EntitySet="RoleTable" />
             <End Role="UserTable" EntitySet="UserTable" />
           </AssociationSet>
@@ -333,7 +333,7 @@
           <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OutputTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__3A81B327" FromRole="CustomerTable" ToRole="OutputTable" />
+          <NavigationProperty Name="OutputTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__267ABA7A" FromRole="CustomerTable" ToRole="OutputTable" />
         </EntityType>
         <EntityType Name="InputDetailTable">
           <Key>
@@ -346,8 +346,8 @@
           <Property Name="PriceSale" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InputTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_In__35BCFE0A" FromRole="InputDetailTable" ToRole="InputTable" />
-          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__36B12243" FromRole="InputDetailTable" ToRole="ProductTable" />
+          <NavigationProperty Name="InputTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_In__1FCDBCEB" FromRole="InputDetailTable" ToRole="InputTable" />
+          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__20C1E124" FromRole="InputDetailTable" ToRole="ProductTable" />
         </EntityType>
         <EntityType Name="InputTable">
           <Key>
@@ -356,8 +356,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_User" Type="Int32" Nullable="false" />
           <Property Name="DateInput" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="InputDetailTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_In__35BCFE0A" FromRole="InputTable" ToRole="InputDetailTable" />
-          <NavigationProperty Name="UserTable" Relationship="ManagerStoreWPFModel.FK__InputTabl__ID_Us__32E0915F" FromRole="InputTable" ToRole="UserTable" />
+          <NavigationProperty Name="InputDetailTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_In__1FCDBCEB" FromRole="InputTable" ToRole="InputDetailTable" />
+          <NavigationProperty Name="UserTable" Relationship="ManagerStoreWPFModel.FK__InputTabl__ID_Us__1B0907CE" FromRole="InputTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="OutPutDetailTable">
           <Key>
@@ -368,8 +368,8 @@
           <Property Name="ID_Product" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OutputTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__3D5E1FD2" FromRole="OutPutDetailTable" ToRole="OutputTable" />
-          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__3E52440B" FromRole="OutPutDetailTable" ToRole="ProductTable" />
+          <NavigationProperty Name="OutputTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__2B3F6F97" FromRole="OutPutDetailTable" ToRole="OutputTable" />
+          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__2C3393D0" FromRole="OutPutDetailTable" ToRole="ProductTable" />
         </EntityType>
         <EntityType Name="OutputTable">
           <Key>
@@ -379,9 +379,9 @@
           <Property Name="ID_User" Type="Int32" Nullable="false" />
           <Property Name="ID_Customer" Type="Int32" Nullable="false" />
           <Property Name="DateOutput" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CustomerTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__3A81B327" FromRole="OutputTable" ToRole="CustomerTable" />
-          <NavigationProperty Name="OutPutDetailTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__3D5E1FD2" FromRole="OutputTable" ToRole="OutPutDetailTable" />
-          <NavigationProperty Name="UserTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Us__398D8EEE" FromRole="OutputTable" ToRole="UserTable" />
+          <NavigationProperty Name="CustomerTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Cu__267ABA7A" FromRole="OutputTable" ToRole="CustomerTable" />
+          <NavigationProperty Name="OutPutDetailTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Ou__2B3F6F97" FromRole="OutputTable" ToRole="OutPutDetailTable" />
+          <NavigationProperty Name="UserTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Us__25869641" FromRole="OutputTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="ProductTable">
           <Key>
@@ -392,10 +392,10 @@
           <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ID_Unit" Type="Int32" Nullable="false" />
           <Property Name="ID_Supplier" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="InputDetailTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__36B12243" FromRole="ProductTable" ToRole="InputDetailTable" />
-          <NavigationProperty Name="OutPutDetailTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__3E52440B" FromRole="ProductTable" ToRole="OutPutDetailTable" />
-          <NavigationProperty Name="SupplierTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Su__2F10007B" FromRole="ProductTable" ToRole="SupplierTable" />
-          <NavigationProperty Name="UnitTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Un__300424B4" FromRole="ProductTable" ToRole="UnitTable" />
+          <NavigationProperty Name="InputDetailTable" Relationship="ManagerStoreWPFModel.FK__InputDeta__ID_Pr__20C1E124" FromRole="ProductTable" ToRole="InputDetailTable" />
+          <NavigationProperty Name="OutPutDetailTable" Relationship="ManagerStoreWPFModel.FK__OutPutDet__ID_Pr__2C3393D0" FromRole="ProductTable" ToRole="OutPutDetailTable" />
+          <NavigationProperty Name="SupplierTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Su__15502E78" FromRole="ProductTable" ToRole="SupplierTable" />
+          <NavigationProperty Name="UnitTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Un__164452B1" FromRole="ProductTable" ToRole="UnitTable" />
         </EntityType>
         <EntityType Name="RoleTable">
           <Key>
@@ -403,7 +403,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserTable" Relationship="ManagerStoreWPFModel.FK__UserTable__ID_Ro__286302EC" FromRole="RoleTable" ToRole="UserTable" />
+          <NavigationProperty Name="UserTable" Relationship="ManagerStoreWPFModel.FK__UserTable__ID_Ro__08EA5793" FromRole="RoleTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="SupplierTable">
           <Key>
@@ -414,7 +414,7 @@
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ContractDay" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Su__2F10007B" FromRole="SupplierTable" ToRole="ProductTable" />
+          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Su__15502E78" FromRole="SupplierTable" ToRole="ProductTable" />
         </EntityType>
         <EntityType Name="UnitTable">
           <Key>
@@ -422,7 +422,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descriptions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Un__300424B4" FromRole="UnitTable" ToRole="ProductTable" />
+          <NavigationProperty Name="ProductTable" Relationship="ManagerStoreWPFModel.FK__ProductTa__ID_Un__164452B1" FromRole="UnitTable" ToRole="ProductTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -433,11 +433,11 @@
           <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InputTable" Relationship="ManagerStoreWPFModel.FK__InputTabl__ID_Us__32E0915F" FromRole="UserTable" ToRole="InputTable" />
-          <NavigationProperty Name="OutputTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Us__398D8EEE" FromRole="UserTable" ToRole="OutputTable" />
-          <NavigationProperty Name="RoleTable" Relationship="ManagerStoreWPFModel.FK__UserTable__ID_Ro__286302EC" FromRole="UserTable" ToRole="RoleTable" />
+          <NavigationProperty Name="InputTable" Relationship="ManagerStoreWPFModel.FK__InputTabl__ID_Us__1B0907CE" FromRole="UserTable" ToRole="InputTable" />
+          <NavigationProperty Name="OutputTable" Relationship="ManagerStoreWPFModel.FK__OutputTab__ID_Us__25869641" FromRole="UserTable" ToRole="OutputTable" />
+          <NavigationProperty Name="RoleTable" Relationship="ManagerStoreWPFModel.FK__UserTable__ID_Ro__08EA5793" FromRole="UserTable" ToRole="RoleTable" />
         </EntityType>
-        <Association Name="FK__OutputTab__ID_Cu__3A81B327">
+        <Association Name="FK__OutputTab__ID_Cu__267ABA7A">
           <End Type="ManagerStoreWPFModel.CustomerTable" Role="CustomerTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.OutputTable" Role="OutputTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -449,7 +449,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputDeta__ID_In__35BCFE0A">
+        <Association Name="FK__InputDeta__ID_In__1FCDBCEB">
           <End Type="ManagerStoreWPFModel.InputTable" Role="InputTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.InputDetailTable" Role="InputDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -461,7 +461,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputDeta__ID_Pr__36B12243">
+        <Association Name="FK__InputDeta__ID_Pr__20C1E124">
           <End Type="ManagerStoreWPFModel.ProductTable" Role="ProductTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.InputDetailTable" Role="InputDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -473,7 +473,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InputTabl__ID_Us__32E0915F">
+        <Association Name="FK__InputTabl__ID_Us__1B0907CE">
           <End Type="ManagerStoreWPFModel.UserTable" Role="UserTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.InputTable" Role="InputTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -485,7 +485,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutPutDet__ID_Ou__3D5E1FD2">
+        <Association Name="FK__OutPutDet__ID_Ou__2B3F6F97">
           <End Type="ManagerStoreWPFModel.OutputTable" Role="OutputTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.OutPutDetailTable" Role="OutPutDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -497,7 +497,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutPutDet__ID_Pr__3E52440B">
+        <Association Name="FK__OutPutDet__ID_Pr__2C3393D0">
           <End Type="ManagerStoreWPFModel.ProductTable" Role="ProductTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.OutPutDetailTable" Role="OutPutDetailTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -509,7 +509,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OutputTab__ID_Us__398D8EEE">
+        <Association Name="FK__OutputTab__ID_Us__25869641">
           <End Type="ManagerStoreWPFModel.UserTable" Role="UserTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.OutputTable" Role="OutputTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -521,7 +521,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductTa__ID_Su__2F10007B">
+        <Association Name="FK__ProductTa__ID_Su__15502E78">
           <End Type="ManagerStoreWPFModel.SupplierTable" Role="SupplierTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.ProductTable" Role="ProductTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -533,7 +533,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductTa__ID_Un__300424B4">
+        <Association Name="FK__ProductTa__ID_Un__164452B1">
           <End Type="ManagerStoreWPFModel.UnitTable" Role="UnitTable" Multiplicity="1" />
           <End Type="ManagerStoreWPFModel.ProductTable" Role="ProductTable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -545,7 +545,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserTable__ID_Ro__286302EC">
+        <Association Name="FK__UserTable__ID_Ro__08EA5793">
           <End Type="ManagerStoreWPFModel.RoleTable" Role="RoleTable" Multiplicity="0..1" />
           <End Type="ManagerStoreWPFModel.UserTable" Role="UserTable" Multiplicity="*" />
           <ReferentialConstraint>

@@ -13,7 +13,8 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="650" Width="1000"
-        Name="wdow" DataContext="{StaticResource SupplierViewModel}"
+        Name="wdow" 
+        DataContext="{StaticResource SupplierViewModel}"
         Title="Hệ Thống Quản Lý Bán Hàng">
     <Grid>
         <Grid.RowDefinitions>
@@ -163,7 +164,7 @@
                                     </Button>
                                 </Grid>
                                 <Grid Grid.Row="2">
-                                    <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 5">
+                                    <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 8">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition></ColumnDefinition>
