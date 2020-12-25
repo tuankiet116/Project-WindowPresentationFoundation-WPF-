@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        d:DesignHeight="850" d:DesignWidth="1000"
+        Height="680" Width="1200"
         Name="wdow"
         Title="Phần Mềm Quản Lý Bán Hàng">
     <Grid>
@@ -58,7 +58,7 @@
 
         <Grid Grid.Row="1" Background="LightSkyBlue">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="650"></ColumnDefinition>
+                <ColumnDefinition Width="800"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -139,7 +139,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
@@ -164,13 +164,80 @@
 
                 <Grid Grid.Row="1">
                     <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ButtonAssist.CornerRadius="30" Margin="10">
-                        
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ListView ItemsSource="{Binding Items1}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn
+                                        DisplayMemberBinding="{Binding Code}"
+                                        Header="STT" />
+                                        <GridViewColumn
+                                        DisplayMemberBinding="{Binding Name}"
+                                        Header="Sản phẩm" />
+                                        <GridViewColumn
+                                        DisplayMemberBinding="{Binding Description}"
+                                        Header="Giá" />
+                                        <GridViewColumn
+                                        DisplayMemberBinding="{Binding Description}"
+                                        Header="Số lượng" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
                     </materialDesign:Card>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ButtonAssist.CornerRadius="30" Margin="10 0 10 10" Background="LightGray">
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2" materialDesign:ButtonAssist.CornerRadius="30" Margin="10 0 10 10" Padding="0 0 0 15" Background="LightGray">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
 
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:PackIcon Grid.Column="0" Kind="CashUsd" Margin="10 12 -5 0" Width="25" Height="25" Foreground="Green"/>
+
+                                <TextBlock Grid.Column="1" Foreground="#2979ff" FontWeight="Bold" FontSize="18" Padding="15 15 0 0">Tổng Tiền</TextBlock>
+
+                                <TextBlock Grid.Column="2" Foreground="#2979ff" FontWeight="Bold" FontSize="18" Padding="15 15 50 0" HorizontalAlignment="Right"> 0 </TextBlock>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:PackIcon Grid.Column="0" Kind="CartPlus" Margin="10 12 -5 0" Width="25" Height="25" Foreground="Red"/>
+
+                                <TextBlock Grid.Column="1" Foreground="#424242" FontWeight="Bold" FontSize="18" Padding="15 15 0 0">Số Lượng</TextBlock>
+
+                                <TextBlock Grid.Column="2" Foreground="#424242" FontWeight="Bold" FontSize="18" Padding="15 15 50 0" HorizontalAlignment="Right"> 0</TextBlock>
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:PackIcon Grid.Column="0" Kind="AccountTie" Margin="10 12 -5 0" Width="25" Height="25" Foreground="#2979ff"/>
+
+                                <TextBlock Grid.Column="1" Foreground="#424242" FontWeight="Bold" FontSize="18" Padding="15 15 0 0">Nhân Viên</TextBlock>
+
+                                <TextBlock Grid.Column="2" Foreground="#424242" FontWeight="Bold" FontSize="18" Padding="15 15 10 0" HorizontalAlignment="Right"> Nguyễn Minh Tuấn </TextBlock>
+                            </Grid>
+                        </Grid>
                     </materialDesign:Card>
                 </Grid>
 
@@ -188,7 +255,7 @@
                         materialDesign:ButtonProgressAssist.Value="-1"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                         materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                        Background="#64dd17">
+                        Background="#76ff03">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -211,7 +278,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Margin="10 0 5 10" Grid.Column="0" FontWeight="Bold" Background="#0288d1">
+                        <Button Margin="10 0 5 10" Height="40" Grid.Column="0" FontWeight="Bold" Background="#0288d1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
@@ -226,7 +293,7 @@
                             </Grid>
                         </Button>
 
-                        <Button Margin="5 0 10 10" Grid.Column="1" FontWeight="Bold" Background="#d50000">
+                        <Button Margin="5 0 10 10" Height="40" Grid.Column="1" FontWeight="Bold" Background="#d50000">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>

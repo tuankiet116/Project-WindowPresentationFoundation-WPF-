@@ -246,6 +246,9 @@
     <Compile Include="SupplierWindow.xaml.cs">
       <DependentUpon>SupplierWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UnitWindow.xaml.cs">
+      <DependentUpon>UnitWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -295,6 +298,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SupplierWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UnitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

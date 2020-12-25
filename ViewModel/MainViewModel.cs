@@ -26,6 +26,7 @@ namespace MyProject.ViewModel
         public ICommand ProductWindow { get; set; } 
         public ICommand SupplierWindow { get; set; }
         public ICommand StatisticalWindow { get; set; }
+        public ICommand UnitWindow { get; set; }
         public ICommand CloseDialogCommand { get; set; }
 
         private bool isLoaded = false;
@@ -37,6 +38,7 @@ namespace MyProject.ViewModel
             ProductWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
             SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
             StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
+            UnitWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
             CloseDialogCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { IsDialogOpen = false; });
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
