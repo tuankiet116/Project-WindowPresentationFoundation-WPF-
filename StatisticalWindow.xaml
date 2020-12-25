@@ -14,7 +14,8 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         d:DesignHeight="800" d:DesignWidth="1200"
         Name="wdow"
-        Title="Hệ Thống Quản Lý Bán Hàng">
+        Title="Hệ Thống Quản Lý Bán Hàng"
+        DataContext="{StaticResource StatisticalViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -45,7 +46,7 @@
 
                         <Grid Grid.Column="1">
                             <materialDesign:Chip
-                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
+                                Content="{Binding UserDisplayName}" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
                                 <materialDesign:Chip.Icon>
                                     <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
                                 </materialDesign:Chip.Icon>
@@ -122,7 +123,7 @@
                                     Style="{StaticResource MaterialDesignHeadline5TextBlock}">
                                     Số lượng tồn
                                 </TextBlock>
-                                
+
                                 <TextBlock
                                     Grid.Row="1"
                                     Margin="16 0 16 -10"
@@ -130,9 +131,8 @@
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     FontWeight="Bold"
-                                    FontSize="45">
-                                    1200
-                                </TextBlock>
+                                    FontSize="45"
+                                    Text="{Binding AmountInventory}"/>
 
                                 <materialDesign:PackIcon 
                                     Kind="Archive" 
@@ -172,9 +172,7 @@
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     FontWeight="Bold"
-                                    FontSize="45">
-                                    20000
-                                </TextBlock>
+                                    FontSize="45" Text="{Binding AmountSale}"/>
 
                                 <materialDesign:PackIcon 
                                     Kind="CartArrowRight" 
@@ -214,9 +212,7 @@
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     FontWeight="Bold"
-                                    FontSize="45">
-                                    20
-                                </TextBlock>
+                                    FontSize="45" Text="{Binding AmountEmployee}"/>
 
                                 <materialDesign:PackIcon 
                                     Kind="AccountTie" 
@@ -248,7 +244,7 @@
                                     Style="{StaticResource MaterialDesignHeadline5TextBlock}">
                                     Khách hàng
                                 </TextBlock>
-                                
+
                                 <TextBlock
                                     Grid.Row="1"
                                     Margin="16 0 16 -10"
@@ -256,9 +252,7 @@
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignBody2TextBlock}"
                                     FontWeight="Bold"
-                                    FontSize="45">
-                                    15000
-                                </TextBlock>
+                                    FontSize="45" Text="{Binding AmountCustomer}"/>
 
                                 <materialDesign:PackIcon 
                                     Kind="AccountMultiple" 
@@ -310,21 +304,21 @@
                     <Grid Grid.Row="1">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ListView 
-                                ItemsSource="{Binding List}"
+                                ItemsSource="{Binding ListInventory}"
                                 SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" Margin="0 5 0 0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn
-                                        DisplayMemberBinding="{Binding Code}"
+                                        DisplayMemberBinding="{Binding Product.ID}"
                                         Header="ID" />
                                         <GridViewColumn
-                                        DisplayMemberBinding="{Binding Name}"
+                                        DisplayMemberBinding="{Binding Product.DisplayName}"
                                         Header="Tên sản phẩm" />
                                         <GridViewColumn
-                                        DisplayMemberBinding="{Binding Description}"
+                                        DisplayMemberBinding="{Binding CountInventory}"
                                         Header="Số lượng tồn" />
                                         <GridViewColumn
-                                        DisplayMemberBinding="{Binding Description}"
+                                        DisplayMemberBinding="{Binding CountSaled}"
                                         Header="Số lượng bán được" />
                                     </GridView>
                                 </ListView.View>
