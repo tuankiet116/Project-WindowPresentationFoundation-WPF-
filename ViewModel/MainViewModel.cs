@@ -19,7 +19,6 @@ namespace MyProject.ViewModel
         private bool _IsDialogOpen;
 
         public string UserDisplayName { get { return _UserDisplayName; } set { _UserDisplayName = value; OnPropertyChanged(); } }
-        public bool IsDialogOpen { get { return _IsDialogOpen; } set { _IsDialogOpen = value; OnPropertyChanged(); } }
 
         public ICommand LoadMainWindow { get; set; }
         public ICommand ImportWindow { get; set; }
@@ -28,6 +27,10 @@ namespace MyProject.ViewModel
         public ICommand ProductWindow { get; set; } 
         public ICommand SupplierWindow { get; set; }
         public ICommand StatisticalWindow { get; set; }
+        public ICommand UnitWindow { get; set; }
+        public ICommand UserListWindow { get; set; }
+        public ICommand CloseDialogCommand { get; set; }
+        public ICommand AccountWindowCommand { get; set; }
 
         private bool isLoaded = false;
         public MainViewModel()
@@ -46,6 +49,8 @@ namespace MyProject.ViewModel
             ProductWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
             SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
             StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
+            UnitWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
+            UserListWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UserListWindow wd = new UserListWindow(); wd.ShowDialog(); }
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)

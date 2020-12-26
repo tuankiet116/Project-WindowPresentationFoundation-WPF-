@@ -90,15 +90,78 @@
                                 <Grid Grid.Column="1">
                                     <materialDesign:Chip
                                 Content="{Binding UserDisplayName}" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
-                                        <materialDesign:Chip.Icon>
-                                            <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
-                                        </materialDesign:Chip.Icon>
-                                    </materialDesign:Chip>
-                                </Grid>
+                                    <materialDesign:Chip.Icon>
+                                        <Grid>
+                                            <materialDesign:PackIcon Kind="Account" Width="25" Height="25" Margin="4 0 0 0"/>
+                                            <materialDesign:PopupBox
+                                                DockPanel.Dock="Right"
+                                                PlacementMode="BottomAndAlignRightEdges" Opacity="0">
+                                                <ListBox>
+                                                    <ListBoxItem>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid Grid.Column="0">
+                                                                <materialDesign:PackIcon Kind="AccountCircle" Margin="0 2 0 0"/>
+                                                            </Grid>
+
+                                                            <Grid Grid.Column="1">
+                                                                <TextBlock Margin="5 0 0 0"> Tài Khoản </TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid Grid.Column="0">
+                                                                <materialDesign:PackIcon Kind="LockOpen" Margin="0 2 0 0"/>
+                                                            </Grid>
+
+                                                            <Grid Grid.Column="1">
+                                                                
+                                                                <TextBlock Margin="5 0 0 0"> Đổi Mật Khẩu <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="Click">
+                                                                        <i:InvokeCommandAction Command="{Binding AccountWindowCommand}"
+                                                                            ></i:InvokeCommandAction>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers></TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </ListBoxItem>
+                                                    <Separator/>
+                                                    <ListBoxItem>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid Grid.Column="0">
+                                                                <materialDesign:PackIcon Kind="Logout" Margin="0 2 0 0"/>
+                                                            </Grid>
+
+                                                            <Grid Grid.Column="1">
+                                                                <TextBlock Margin="5 0 0 0" Text="{Binding RunExtendedDialogCommand}"> Đăng Xuất</TextBlock>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </ListBoxItem>
+                                                </ListBox>
+                                            </materialDesign:PopupBox>
+                                        </Grid>
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
                             </Grid>
-                        </StackPanel>
-                    </materialDesign:ColorZone>
-                </Grid>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </Grid>
 
                 <Grid Grid.Row="1">
                     <materialDesign:Card >
@@ -118,12 +181,12 @@
 
                                 <Grid Grid.Column="0" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding ImportWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding ImportWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -145,12 +208,12 @@
 
                                 <Grid Grid.Column="1" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding SellWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding SellWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -171,12 +234,12 @@
 
                                 <Grid Grid.Column="2" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding ProductWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding ProductWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -205,13 +268,13 @@
 
                                 <Grid Grid.Column="0" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    Margin="0 -70 0 0"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding SupplierWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        Margin="0 -70 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding SupplierWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -233,13 +296,13 @@
 
                                 <Grid Grid.Column="1" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    Margin="0 -70 0 0"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding CustomerWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        Margin="0 -70 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding CustomerWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -260,13 +323,13 @@
 
                                 <Grid Grid.Column="2" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    Margin="0 -70 0 0"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding UserWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        Margin="0 -70 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding UnitWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -274,12 +337,12 @@
                                             </Grid.RowDefinitions>
 
                                             <Grid Grid.Row="0">
-                                                <TextBlock Text="Tài khoản" FontSize="25" Padding="0 0 0 5"/>
+                                                <TextBlock Text="Đơn vị" FontSize="25" Padding="0 0 0 5"/>
                                             </Grid>
 
                                             <Grid Grid.Row="1">
                                                 <materialDesign:PackIcon Foreground="White" 
-                                                Kind="AccountCircle" Height="30" Width="30" HorizontalAlignment="Center"/>
+                                                Kind="Ballot" Height="30" Width="30" HorizontalAlignment="Center"/>
                                             </Grid>
                                         </Grid>
                                     </Button>
@@ -295,13 +358,13 @@
 
                                 <Grid Grid.Column="0" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    Margin="0 -132 0 0"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding StatisticalWindow}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        Margin="0 -132 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding StatisticalWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -323,13 +386,40 @@
 
                                 <Grid Grid.Column="1" Width="300" Height="200">
                                     <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    Margin="0 -132 0 0"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding Setting}">
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        Margin="0 -132 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding UserListWindow}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"></RowDefinition>
+                                                <RowDefinition Height="auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <TextBlock Text="Danh sách tài khoản" FontSize="25" Padding="0 0 0 5"/>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <materialDesign:PackIcon Foreground="White" 
+                                                Kind="AccountCircle" Height="30" Width="30" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+
+                                <Grid Grid.Column="2" Width="300" Height="200">
+                                    <Button
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Width="250"
+                                        Height="120"
+                                        Margin="0 -132 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                                        Command="{Binding SettingWindow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"></RowDefinition>
@@ -343,33 +433,6 @@
                                             <Grid Grid.Row="1">
                                                 <materialDesign:PackIcon Foreground="White" 
                                                 Kind="Cog" Height="30" Width="30" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                        </Grid>
-                                    </Button>
-                                </Grid>
-
-                                <Grid Grid.Column="2" Width="300" Height="200">
-                                    <Button
-                                    Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Width="250"
-                                    Height="120"
-                                    Margin="0 -132 0 0"
-                                    materialDesign:ButtonAssist.CornerRadius="10"
-                                    ToolTip="MaterialDesignRaisedButton with Round Corners"
-                                    Command="{Binding Logout}">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-
-                                            <Grid Grid.Row="0">
-                                                <TextBlock Text="Đăng xuất" FontSize="25" Padding="0 0 0 5"/>
-                                            </Grid>
-
-                                            <Grid Grid.Row="1">
-                                                <materialDesign:PackIcon Foreground="White" 
-                                                Kind="Logout" Height="30" Width="30" HorizontalAlignment="Center"/>
                                             </Grid>
                                         </Grid>
                                     </Button>

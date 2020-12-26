@@ -13,8 +13,9 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        d:DesignHeight="500" d:DesignWidth="1000"
-        Name="wdow" DataContext="{StaticResource SupplierViewModel}"
+        Height="650" Width="1000"
+        Name="wdow" 
+        DataContext="{StaticResource SupplierViewModel}"
         Title="Hệ Thống Quản Lý Bán Hàng">
     <Window.Resources>
         <ResourceDictionary>
