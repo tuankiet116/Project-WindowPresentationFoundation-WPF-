@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
-        Height="630" Width="919"
+        Width="1000" Height="600"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:model="clr-namespace:MyProject.Model.NotificationHelper"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -15,59 +16,79 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="mainWindow"
-        Title="Hệ Thống Quản Lý Bán Hàng"
-        DataContext="{StaticResource MainViewModel}">
-    <materialDesign:DialogHost x:Name="DialogHost" IsOpen="{Binding IsDialogOpen}"
+        Title="Hệ Thống Quản Lý Bán Hàng" 
+        DataContext="{StaticResource MainViewModel}" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type model:ErrorNotificationMessage}">
+                <StackPanel Margin="20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Kind="Error"
+                                                 Height="48"
+                                                 Width="48"
+                                                 Margin="20, 25, 20, 20"
+                                                 Grid.Column="0" />
+                        <StackPanel Margin="20"
+                                    Grid.Column="1"
+                                    MinWidth="300">
+                            <TextBlock Text="{Binding Title}"
+                                       Style="{StaticResource MaterialDesignCaptionTextBlock}"></TextBlock>
+                            <TextBlock Text="{Binding Message}"
+                                       Margin="0,20,0,0"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Button Content="OK"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type model:InforNotificationMessage}">
+                <StackPanel Margin="20"
+                            Grid.Column="1" 
+                            MinWidth="300">
+                    <TextBlock Text="{Binding Title}"
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}"></TextBlock>
+                    <TextBlock Text="{Binding Message}"
+                               Margin="0,10,0,20"></TextBlock>
+                    <Button Content="OK"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <materialDesign:DialogHost x:Name="DialogHost"
             CloseOnClickAway="True"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            OverlayBackground="{DynamicResource PrimaryHueDarkBrush}"
-            Width="auto" Height="auto">
-        <materialDesign:DialogHost.DialogContent>
-            <Grid>
+             Identifier="RootDialog">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" >
+            <Grid >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding LoadMainWindow}"
+                                       CommandParameter="{Binding ElementName=mainWindow}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <TextBlock Text="Bạn Không Có Quyền Truy Cập! Vui Lòng Liên Hệ Quản Trị Viên!" Margin="20"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Button Grid.Column="0"
-                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
-                            ToolTip="MaterialDesignFlatMidButton"
-                            Command="{Binding CloseDialogCommand}" 
-                            CommandParameter="{Binding ElementName=loginWindow}"
-                            Content="_Okay"/>
-                </Grid>
-            </Grid>
-        </materialDesign:DialogHost.DialogContent>
-    
-    <Grid>
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding LoadMainWindow}"
-                                       CommandParameter="{Binding ElementName=mainWindow}"></i:InvokeCommandAction>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <materialDesign:ColorZone Padding="16" Background="BlueViolet">
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" HorizontalAlignment="Left">
-                            <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="TRANG CHỦ" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
-                            </TextBlock>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                                <materialDesign:Chip
+                    <materialDesign:ColorZone Padding="16" Background="BlueViolet">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" HorizontalAlignment="Left">
+                                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="TRANG CHỦ" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <materialDesign:Chip
                                 Content="{Binding UserDisplayName}" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
                                     <materialDesign:Chip.Icon>
                                         <Grid>
@@ -246,16 +267,8 @@
             </materialDesign:ColorZone>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <materialDesign:Card Background="LightSkyBlue">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-
+                <Grid Grid.Row="1">
+                    <materialDesign:Card >
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
@@ -530,9 +543,9 @@
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-            </materialDesign:Card>
-        </Grid>
-    </Grid>
+                    </materialDesign:Card>
+                </Grid>
+            </Grid>
+        </StackPanel>
     </materialDesign:DialogHost>
 </Window>

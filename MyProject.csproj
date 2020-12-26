@@ -186,6 +186,10 @@
     <Compile Include="ImportWindow.xaml.cs">
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\NotificationHelper\DeleteNotificationMessage.cs" />
+    <Compile Include="Model\NotificationHelper\ErrorNotificationMessage.cs" />
+    <Compile Include="Model\NotificationHelper\InforNotificationMessage.cs" />
+    <Compile Include="Model\NotificationHelper\NotificationMessage.cs" />
     <Compile Include="Model\StatiscalModel.cs" />
     <Compile Include="Model\UserLogin.cs" />
     <Compile Include="SellWindow.xaml.cs">
