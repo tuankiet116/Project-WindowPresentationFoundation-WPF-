@@ -1,4 +1,6 @@
-﻿using MyProject.Model;
+﻿using MaterialDesignThemes.Wpf;
+using MyProject.Model;
+using MyProject.Model.NotificationHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,18 +28,24 @@ namespace MyProject.ViewModel
         public ICommand ProductWindow { get; set; } 
         public ICommand SupplierWindow { get; set; }
         public ICommand StatisticalWindow { get; set; }
-        public ICommand CloseDialogCommand { get; set; }
 
         private bool isLoaded = false;
         public MainViewModel()
         {
-            ImportWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } ImportWindow wd = new ImportWindow(); wd.ShowDialog(); });
+            ImportWindow = new RelayCommand<Window>((p) => { return true; }, (p) => 
+            { 
+                if (_UserIDRole != 1) {
+                    LoadDialogErrorNotPermission();
+                    return;
+                } 
+                ImportWindow wd = new ImportWindow(); 
+                wd.ShowDialog(); 
+            });
             SellWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { SellWindow wd = new SellWindow(); wd.ShowDialog(); });
-            CustomerWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
-            ProductWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
-            SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
-            StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { IsDialogOpen = true; return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
-            CloseDialogCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { IsDialogOpen = false; });
+            CustomerWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
+            ProductWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } ProductWindow wd = new ProductWindow(); wd.ShowDialog(); });
+            SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
+            StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)
@@ -75,6 +83,14 @@ namespace MyProject.ViewModel
                 UserDisplayName = item.DisplayName;
                 _UserIDRole = (int)item.ID_Role;
             }
+        }
+
+        private void LoadDialogErrorNotPermission()
+        {
+            ErrorNotificationMessage msg = new ErrorNotificationMessage();
+            msg.Message = "Bạn Không Có Quyền Truy Cập! Vui Lòng Liên Hệ Quản Trị Viên!";
+
+            DialogHost.Show(msg, "RootDialog");
         }
     }
 }
