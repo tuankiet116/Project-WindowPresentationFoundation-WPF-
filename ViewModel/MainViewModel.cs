@@ -16,7 +16,6 @@ namespace MyProject.ViewModel
     {
         private string _UserDisplayName;
         private int _UserIDRole;
-        private bool _IsDialogOpen;
 
         public string UserDisplayName { get { return _UserDisplayName; } set { _UserDisplayName = value; OnPropertyChanged(); } }
 
@@ -50,7 +49,7 @@ namespace MyProject.ViewModel
             SupplierWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } SupplierWindow wd = new SupplierWindow(); wd.ShowDialog(); });
             StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
             UnitWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
-            UserListWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UserListWindow wd = new UserListWindow(); wd.ShowDialog(); }
+            UserListWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UserListWindow wd = new UserListWindow(); wd.ShowDialog(); });
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)

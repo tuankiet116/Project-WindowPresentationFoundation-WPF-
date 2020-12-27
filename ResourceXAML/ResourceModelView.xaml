@@ -7,4 +7,8 @@
     <viewmodel:StatisticalViewModel x:Key="StatisticalViewModel"></viewmodel:StatisticalViewModel>
     <viewmodel:SupplierViewModel x:Key="SupplierViewModel"></viewmodel:SupplierViewModel>
     <viewmodel:ImportViewModel x:Key="ImportViewModel"></viewmodel:ImportViewModel>
+    <viewmodel:CustomerViewModel x:Key="CustomerViewModel"></viewmodel:CustomerViewModel>
+    <viewmodel:UnitViewModel x:Key="UnitViewModel"></viewmodel:UnitViewModel>
+    <viewmodel:ProductViewModel x:Key="ProductViewModel"></viewmodel:ProductViewModel>
+    <viewmodel:SellViewModel x:Key="SellViewModel"></viewmodel:SellViewModel>
 </ResourceDictionary>

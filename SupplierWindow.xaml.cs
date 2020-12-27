@@ -23,5 +23,10 @@ namespace MyProject
         {
             InitializeComponent();
         }
+
+        private void Click_Button(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("air");
+        }
     }
 }

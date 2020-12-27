@@ -41,16 +41,73 @@
                         </StackPanel>
                     </Grid>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="Chấp Nhận" Width="100" DataContext="{StaticResource SupplierViewModel}"
-                            Command="{Binding ConfirmDelete}" ></Button>
-                        <Button Grid.Column="1" Width="100" Content="Quay Lại"
+                        <Button Width="100" Content="Okey"
                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
                     </Grid>
                     
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type model:EditSupplier}">
+                <StackPanel Margin="20" DataContext="{StaticResource SupplierViewModel}">
+                    <Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="5">
+                                    <TextBox
+                                        Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        materialDesign:HintAssist.Hint="Nhà cung cấp"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        VerticalAlignment="Center"
+                                        Foreground="BlueViolet"
+                                        Margin="10 0 15 0"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="5">
+                                    <TextBox
+                                        Text="{Binding Address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        materialDesign:HintAssist.Hint="Địa chỉ"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        VerticalAlignment="Center"
+                                        Foreground="BlueViolet"
+                                        Margin="10 0 15 10"/>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="5">
+                                    <TextBox
+                                        Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        materialDesign:HintAssist.Hint="Số điện thoại"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        VerticalAlignment="Center"
+                                        Foreground="BlueViolet"
+                                        Margin="10 2 15 0" MaxLength="10"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="5">
+                                    <DatePicker
+                                        materialDesign:HintAssist.Hint="Thời hạn hợp tác" 
+                                        SelectedDate="{Binding ContractDay, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Margin="10 23 15 10"
+                                        Foreground="BlueViolet"/>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Button Command="{Binding ConfirmEditCommand}">Thay Đổi</Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </StackPanel>
             </DataTemplate>
         </ResourceDictionary>
@@ -189,23 +246,6 @@
                                             </Grid>
                                         </Button>
                                     </Grid>
-                                    <Grid Grid.Row="1">
-                                        <Button Command="{Binding EditCommand}" Width="150" Margin="5 5 10 5">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0">
-                                                    <materialDesign:PackIcon Kind="Wrench" Margin="0 0 5 0" />
-                                                </Grid>
-                                                <Grid Grid.Column="1">
-                                                    <TextBlock>Sửa</TextBlock>
-                                                </Grid>
-                                            </Grid>
-                                        </Button>
-                                    </Grid>
                                     <Grid Grid.Row="2">
                                         <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 5">
                                             <Grid>
@@ -240,7 +280,7 @@
                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                    VerticalAlignment="Center"
                                    Foreground="BlueViolet"
-                                   Margin="10 5 10 5"/>
+                                   Margin="10 5 10 5" Text="{Binding SearchTerm}"/>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <Button Command="{Binding SearchCommand}" Width="150" Margin="5 5 8 20">
@@ -285,14 +325,22 @@
                                     <GridViewColumn
                                     DisplayMemberBinding="{Binding ContractDay}"
                                     Header="Thời gian hợp tác" />
+                                    <GridViewColumn Width="Auto" Header="Chức Năng">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="Button_Edit" IsEnabled="{Binding Path=IsSelected, 
+                                                    RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"
+                                                    Width="100" Content="Sửa" DataContext="{StaticResource SupplierViewModel}"
+                                                        Command="{Binding EditCommand}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
-
                             </ListView.View>
                         </ListView>
                     </ScrollViewer>
 
                 </materialDesign:Card>
-                <!-- simplest form -->
 
             </Grid>
             <Grid Grid.Row="1">

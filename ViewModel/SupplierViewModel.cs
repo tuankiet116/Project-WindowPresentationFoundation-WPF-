@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MyProject.ViewModel
@@ -26,6 +27,7 @@ namespace MyProject.ViewModel
         private int _UserIDRole;
         private string _Message;
         private bool _IsActiveSnackBar;
+        private string _SearchTerm;
 
         public string UserDisplayName { get { return _UserDisplayName; } set { _UserDisplayName = value; OnPropertyChanged(); } }
 
@@ -50,14 +52,16 @@ namespace MyProject.ViewModel
         public string Address { get { return _Address; } set { _Address = value; OnPropertyChanged(); } }
         public string Phone { get { return _Phone; } set { _Phone = value; OnPropertyChanged(); } }
         public DateTime ContractDay { get { return _ContractDay; } set { _ContractDay = value; OnPropertyChanged(); } }
+        public string SearchTerm { get { return _SearchTerm; } set { _SearchTerm = value; OnPropertyChanged(); } }
 
         public string Message { get { return _Message; } set { _Message = value; OnPropertyChanged(); } }
         public bool IsActiveSnackBar { get { return _IsActiveSnackBar; } set { _IsActiveSnackBar = value; OnPropertyChanged(); } }
 
         public ICommand AddCommand { get; set; }
-        public ICommand EditCommand { get; set; }
+        public ICommand ConfirmEditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ICommand ConfirmDelete { get; set; }
+        public ICommand SearchCommand { get; set; }
+        public ICommand EditCommand { get; set; }
 
         public SupplierViewModel()
         {
@@ -80,7 +84,8 @@ namespace MyProject.ViewModel
                     return false;
 
                 return true;
-            }, (p) =>
+            }, 
+            (p) =>
             {
                 var newSupplier = new SupplierTable();
                 newSupplier.DisplayName = DisplayName;
@@ -96,6 +101,7 @@ namespace MyProject.ViewModel
                 Address = null;
                 Phone = null;
                 ContractDay = DateTime.Today;
+                SelectedItems = null;
 
                 IsActiveSnackBar = true;
                 Message = "Thêm Thành Công!";
@@ -107,7 +113,7 @@ namespace MyProject.ViewModel
                 timer.Start();
             });
 
-            EditCommand = new RelayCommand<object>((p) =>
+            ConfirmEditCommand = new RelayCommand<Button>((p) =>
             {
                 var Supplier = DataProvider.Ins.Entities.SupplierTable.Where(x => x.DisplayName == DisplayName);
 
@@ -116,9 +122,10 @@ namespace MyProject.ViewModel
 
                 if (Supplier == null || SelectedItems == null)
                     return false;
-
+                
                 return true;
-            }, (p) =>
+            },
+            (p) =>
             {
                 SupplierTable EditItem = DataProvider.Ins.Entities.SupplierTable.Where(x=>x.ID == SelectedItems.ID).SingleOrDefault();
                 if(EditItem == null)
@@ -137,10 +144,12 @@ namespace MyProject.ViewModel
                 Address = null;
                 Phone = null;
                 ContractDay = DateTime.Today;
+                SelectedItems = null;
 
                 IsActiveSnackBar = true;
                 Message = "Sửa Thành Công!";
 
+                DialogHost.CloseDialogCommand.Execute(null, null);
                 System.Timers.Timer timer = new System.Timers.Timer();
                 timer.Interval = 3000;
                 timer.Enabled = true;
@@ -159,23 +168,31 @@ namespace MyProject.ViewModel
                     return false;
 
                 return true;
-            },(p) =>
+            },
+            (p) =>
             {
                 SupplierTable DeleteItem = DataProvider.Ins.Entities.SupplierTable.Where(x => x.ID == SelectedItems.ID).SingleOrDefault();
+
+                var listProduct = DataProvider.Ins.Entities.ProductTable.Where(x => x.ID_Supplier == SelectedItems.ID);
+
                 if (DeleteItem == null)
                 {
                     return;
                 }
-                try
+
+                if (listProduct.Count() > 0)
                 {
-                     DataProvider.Ins.Entities.SupplierTable.Remove(DeleteItem);
-                     DataProvider.Ins.Entities.SaveChanges();
-                }
-                catch
-                {
-                    LoadDialogErrorConfirmDelete();
+                    DisplayName = null;
+                    Address = null;
+                    Phone = null;
+                    ContractDay = DateTime.Today;
+                    SelectedItems = null;
+                    LoadDialogErrorDelete();
                     return;
                 }
+
+                DataProvider.Ins.Entities.SupplierTable.Remove(DeleteItem);
+                DataProvider.Ins.Entities.SaveChanges();
                
                 ListSupplier = new List<SupplierTable>(DataProvider.Ins.Entities.SupplierTable);
 
@@ -183,6 +200,7 @@ namespace MyProject.ViewModel
                 Address = null;
                 Phone = null;
                 ContractDay = DateTime.Today;
+                SelectedItems = null;
 
                 IsActiveSnackBar = true;
                 Message = "Xóa Thành Công!";
@@ -194,56 +212,32 @@ namespace MyProject.ViewModel
                 timer.Start();
             });
 
-            ConfirmDelete = new RelayCommand<Window>((p) =>
+            SearchCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             },
             (p) =>
             {
-                var ListProduct = DataProvider.Ins.Entities.ProductTable.Where(x => x.ID_Supplier == SelectedItems.ID);
-                if (ListProduct == null)
-                    return;
-                foreach(var item in ListProduct)
+                if(SearchTerm == null)
                 {
-                    
-                    var ListSell = DataProvider.Ins.Entities.OutPutDetailTable.Where(x=>x.ID_Product == item.ID).ToList();
-                    int IDSell = 0;
-                    if (ListSell.Count() > 0)
-                    {
-                        foreach(var sell in ListSell)
-                        {
-                            IDSell = sell.ID_Output;
-                            DataProvider.Ins.Entities.OutPutDetailTable.Remove(sell);
-                            DataProvider.Ins.Entities.SaveChanges();
-                        }
-                    }
-                    DataProvider.Ins.Entities.OutputTable.Remove(DataProvider.Ins.Entities.OutputTable.Where(x => x.ID == IDSell).SingleOrDefault());
-                    DataProvider.Ins.Entities.SaveChanges();
-                    var ListInput = DataProvider.Ins.Entities.InputDetailTable.Where(x => x.ID_Product == item.ID).ToList();
-                    int IDInput = 0;
-                    if (ListInput.Count() > 0)
-                    {
-                        foreach (var input in ListInput)
-                        {
-                            IDInput = input.ID_Input;
-                            DataProvider.Ins.Entities.InputDetailTable.Remove(input);
-                            DataProvider.Ins.Entities.SaveChanges();
-                        }
-                    }
-                    DataProvider.Ins.Entities.InputTable.Remove(DataProvider.Ins.Entities.InputTable.Where(x => x.ID == IDInput).SingleOrDefault());
-                    DataProvider.Ins.Entities.SaveChanges();
+                    return;
                 }
 
-                DataProvider.Ins.Entities.SupplierTable.Remove(DataProvider.Ins.Entities.SupplierTable.Where(x => x.ID == SelectedItems.ID).SingleOrDefault());
-                DataProvider.Ins.Entities.SaveChanges();
-                IsActiveSnackBar = true;
-                Message = "Xóa Thành Công!";
+                ListSupplier = new List<SupplierTable> (DataProvider.Ins.Entities.SupplierTable.Where(
+                    x=>  x.DisplayName.ToLower().Contains(SearchTerm)
+                        || x.Address.ToLower().Contains(SearchTerm) || x.ContractDay.ToString().ToLower().Contains(SearchTerm)
+                        || x.Phone.ToLower().Contains(SearchTerm)
+                    ));
 
-                System.Timers.Timer timer = new System.Timers.Timer();
-                timer.Interval = 3000;
-                timer.Enabled = true;
-                timer.Elapsed += ShowSnackBar;
-                timer.Start();
+            });
+
+            EditCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            },
+            (p) =>
+            {
+                LoadDialogEdit();
             });
         }
 
@@ -264,10 +258,22 @@ namespace MyProject.ViewModel
             IsActiveSnackBar = false;
         }
 
-        private void LoadDialogErrorConfirmDelete()
+        private void LoadDialogEdit()
+        {
+            EditSupplier dialog = new EditSupplier();
+            dialog.ID = SelectedItems.ID;
+            dialog.ContractDay = SelectedItems.ContractDay;
+            dialog.DisplayName = SelectedItems.DisplayName;
+            dialog.Address = SelectedItems.Address;
+            dialog.Phone = SelectedItems.Phone;
+            dialog.ConfirmEdit = ConfirmEditCommand;
+            DialogHost.Show(dialog, "SupplierDialog");
+        }
+
+        private void LoadDialogErrorDelete()
         {
             DeleteNotificationMessage msg = new DeleteNotificationMessage();
-            msg.Message = "Nếu Xóa Bản Ghi Này Sẽ Ảnh Hưởng Và Xóa Bỏ Những Bản Liên Quan! Bạn Có Chắc Chắn?";
+            msg.Message = "Cửa Hàng Đã Thực Hiện Giao Dịch Với Nhà Cung Cấp! Bạn Vui Lòng Xóa Thông Tin Ở Các Bản Ghi Liên Quan!";
             DialogHost.Show(msg, "SupplierDialog");
         }
     }

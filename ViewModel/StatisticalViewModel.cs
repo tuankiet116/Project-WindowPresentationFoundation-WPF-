@@ -50,12 +50,12 @@ namespace MyProject.ViewModel
                 int sumOutput = 0;
                 int sumInput = 0;
 
-                if(InputList != null)
+                if(InputList.Count() > 0)
                 {
                     sumInput = InputList.Sum(p => p.Amount);
                 }
 
-                if(OutputList != null)
+                if(OutputList.Count() > 0)
                 {
                     sumOutput = OutputList.Sum(p => p.Count);
                 }

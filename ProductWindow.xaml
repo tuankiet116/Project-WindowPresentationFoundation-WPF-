@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyProject"
+             xmlns:model="clr-namespace:MyProject.Model.NotificationHelper"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -13,234 +14,272 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              Height="650" Width="1000"
-             Name="wdow"
+             Name="wdow" DataContext="{StaticResource ProductViewModel}"
              Title="Hệ Thống Quản Lý Bán Hàng">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <materialDesign:ColorZone Padding="16" Background="BlueViolet">
-                <StackPanel>
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type model:DeleteNotificationMessage}">
+                <StackPanel Margin="20">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        
-                        <Grid Grid.Column="0" HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="QUẢN LÝ SẢN PHẨM" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
-                                </TextBlock>
-                            </Grid>
-                        </Grid>
-
-                        <Grid Grid.Column="1">
-                            <materialDesign:Chip
-                                Content="Admin" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
-                                <materialDesign:Chip.Icon>
-                                    <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
-                                </materialDesign:Chip.Icon>
-                            </materialDesign:Chip>
-                        </Grid>
+                        <materialDesign:PackIcon Kind="Alert"
+                                                 Height="48"
+                                                 Width="48"
+                                                 Margin="20, 25, 20, 20"
+                                                 Grid.Column="0" />
+                        <StackPanel Margin="20"
+                                    Grid.Column="1"
+                                    MinWidth="300">
+                            <TextBlock Text="{Binding Title}"
+                                       Style="{StaticResource MaterialDesignCaptionTextBlock}"></TextBlock>
+                            <TextBlock Text="{Binding Message}"
+                                       Margin="0,20,0,0"></TextBlock>
+                        </StackPanel>
                     </Grid>
-                </StackPanel>
-            </materialDesign:ColorZone>
-        </Grid>
+                    <Grid>
+                        <Button Width="100" Content="Okey"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
+                    </Grid>
 
-        <Grid Grid.Row="1" Background="LightSkyBlue">
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <materialDesign:DialogHost x:Name="DialogHost"
+            CloseOnClickAway="True"
+             Identifier="ProductDialog">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Margin="5">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition ></ColumnDefinition>
-                        <ColumnDefinition Width="300"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <materialDesign:Card Grid.Column="0" Margin="5">
+            <Grid Grid.Row="0">
+                <materialDesign:ColorZone Padding="16" Background="BlueViolet">
+                    <StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition ></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" Margin="5">
-                                    <TextBox
-                                        Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"
+
+                            <Grid Grid.Column="0" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="QUẢN LÝ SẢN PHẨM" Foreground="White" FontWeight="Bold" Padding="0 2 0 0" >
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <materialDesign:Chip
+                                Content="{Binding UserDisplayName}" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0 0 40 0">
+                                    <materialDesign:Chip.Icon>
+                                        <materialDesign:PackIcon Kind="Account" Width="25" Height="25"/>
+                                    </materialDesign:Chip.Icon>
+                                </materialDesign:Chip>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="LightSkyBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:Card Grid.Column="0" Margin="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition ></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Margin="5">
+                                        <TextBox
+                                        Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         materialDesign:HintAssist.Hint="Tên sản phẩm"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                         VerticalAlignment="Center"
                                         Foreground="BlueViolet"
                                         Margin="10 0 15 0"/>
-                                </Grid>
-                                <Grid Grid.Row="1" Margin="5">
-                                    <ComboBox
-                                        materialDesign:HintAssist.Hint="Mã đơn vị"
-                                        ItemsSource="{Binding Supplier.DisplayName, UpdateSourceTrigger=PropertyChanged}"
-                                        SelectedItem="{Binding SelectedSupplier}"
+                                    </Grid>
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <ComboBox
+                                        materialDesign:HintAssist.Hint="Đơn vị đo"
+                                        ItemsSource="{Binding ListUnit, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectedItem="{Binding Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        DisplayMemberPath="Descriptions"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                         Foreground="BlueViolet" Margin="10 0 15 0">
-                                        <ComboBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <VirtualizingStackPanel />
-                                            </ItemsPanelTemplate>
-                                        </ComboBox.ItemsPanel>
-                                    </ComboBox>
+                                        </ComboBox>
+                                    </Grid>
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <ComboBox
+                                        materialDesign:HintAssist.Hint="Nhà Cung Cấp"
+                                        ItemsSource="{Binding ListSupplier, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectedItem="{Binding Supplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        DisplayMemberPath="DisplayName"
+                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                        Foreground="BlueViolet" Margin="10 0 15 15">
+
+                                        </ComboBox>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Row="2" Margin="5">
-                                    <TextBox
-                                        Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
-                                        materialDesign:HintAssist.Hint="Mã nhà cung cấp"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                        VerticalAlignment="Center"
-                                        Foreground="BlueViolet"
-                                        Margin="10 0 15 10"/>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+                                        <Button Command="{Binding AddCommand}" Width="150" Margin="5 5 10 5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <materialDesign:PackIcon Kind="PlusThick" Margin="0 0 5 0" />
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <TextBlock>Thêm</TextBlock>
+                                                </Grid>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Button Command="{Binding EditCommand}" Width="150" Margin="5 5 10 5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <materialDesign:PackIcon Kind="Wrench" Margin="0 0 5 0" />
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <TextBlock>Sửa</TextBlock>
+                                                </Grid>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <materialDesign:PackIcon Kind="Delete" Margin="0 0 5 0" />
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <TextBlock>Xóa</TextBlock>
+                                                </Grid>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Column="1">
+
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Grid.Column="1" Margin="5">
+                            <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
-                                    <Button Command="{Binding AddCommand}" Width="150" Margin="5 5 10 5">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid Grid.Column="0">
-                                                <materialDesign:PackIcon Kind="PlusThick" Margin="0 0 5 0" />
-                                            </Grid>
-                                            <Grid Grid.Column="1">
-                                                <TextBlock>Thêm</TextBlock>
-                                            </Grid>
-                                        </Grid>
-                                    </Button>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <Button Command="{Binding EditCommand}" Width="150" Margin="5 5 10 5">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid Grid.Column="0">
-                                                <materialDesign:PackIcon Kind="Wrench" Margin="0 0 5 0" />
-                                            </Grid>
-                                            <Grid Grid.Column="1">
-                                                <TextBlock>Sửa</TextBlock>
-                                            </Grid>
-                                        </Grid>
-                                    </Button>
-                                </Grid>
-                                <Grid Grid.Row="2">
-                                    <Button Command="{Binding DeleteCommand}" Width="150" Margin="5 5 10 5">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid Grid.Column="0">
-                                                <materialDesign:PackIcon Kind="Delete" Margin="0 0 5 0" />
-                                            </Grid>
-                                            <Grid Grid.Column="1">
-                                                <TextBlock>Xóa</TextBlock>
-                                            </Grid>
-                                        </Grid>
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-
-                    </materialDesign:Card>
-
-                    <materialDesign:Card Grid.Column="1" Margin="5">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
-                                <TextBox
-                                    Text="{Binding Search}"
+                                    <TextBox
+                                    Text="{Binding SearchTerm}"
                                     materialDesign:HintAssist.Hint="Tìm kiếm"
                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     VerticalAlignment="Center"
                                     Foreground="BlueViolet"
                                     Margin="10 5 10 5"/>
-                            </Grid>
-                            <Grid Grid.Row="1">
-                                <Button Command="{Binding SearchCommand}" Width="150" Margin="5 5 8 20">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
-                                            <materialDesign:PackIcon Kind="Magnify" Margin="0 0 5 0" />
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Button Command="{Binding SearchCommand}" Width="150" Margin="5 5 8 20">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <materialDesign:PackIcon Kind="Magnify" Margin="0 0 5 0" />
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <TextBlock>Tìm kiếm</TextBlock>
+                                            </Grid>
                                         </Grid>
-                                        <Grid Grid.Column="1">
-                                            <TextBlock>Tìm kiếm</TextBlock>
-                                        </Grid>
-                                    </Grid>
-                                </Button>
+                                    </Button>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </materialDesign:Card>
+                        </materialDesign:Card>
+                    </Grid>
                 </Grid>
-            </Grid>
 
-            <materialDesign:Card Grid.Row="1" Margin="10 0 10 10">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView
+                <materialDesign:Card Grid.Row="1" Margin="10 0 10 10">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView
                         ItemsSource="{Binding List}"
-                        SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn
+                        SelectedItem="{Binding SelectedItems, Mode=OneWayToSource}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn
+                                    Width="auto"
                                     DisplayMemberBinding="{Binding ID}"
                                     Header="ID" />
-                                <GridViewColumn
+                                    <GridViewColumn Width="auto"
                                     DisplayMemberBinding="{Binding DisplayName}"
                                     Header="Tên sản phẩm" />
-                                <GridViewColumn
-                                    DisplayMemberBinding="{Binding Supplier.DisplayName}"
-                                    Header="Mã đơn vị" />
-                                <GridViewColumn
-                                    DisplayMemberBinding="{Binding Amount}"
-                                    Header="Mã nhà cung cấp" />
-                                <GridViewColumn
-                                    DisplayMemberBinding="{Binding Amount}"
-                                    Header="Hình ảnh" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </ScrollViewer>
-            </materialDesign:Card>
+                                    <GridViewColumn Width="auto"
+                                    DisplayMemberBinding="{Binding UnitTable.Descriptions}"
+                                    Header="Đơn vị đo" />
+                                    <GridViewColumn Width="auto"
+                                    DisplayMemberBinding="{Binding SupplierTable.DisplayName}"
+                                    Header="Nhà cung cấp" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <Grid Grid.Row="1">
+
+                    <materialDesign:Snackbar 
+                  Message="{Binding Message}"
+                  IsActive="{Binding IsActiveSnackBar}"/>
+                </Grid>
+            </Grid>
         </Grid>
-    </Grid>
+    </materialDesign:DialogHost>
 </Window>
  	 	
