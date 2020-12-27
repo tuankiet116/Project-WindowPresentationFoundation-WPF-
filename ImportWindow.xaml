@@ -7,6 +7,8 @@
         xmlns:model="clr-namespace:MyProject.Model.NotificationHelper"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:model="clr-namespace:MyProject.Model.NotificationHelper"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -14,7 +16,8 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Height="700" Width="1200"
-        Name="wdow" DataContext="{StaticResource ImportViewModel}"
+        Name="wdow" 
+        DataContext="{StaticResource ImportViewModel}"
         Title="Hệ Thống Quản Lý Bán Hàng">
     <Window.Resources>
         <ResourceDictionary>
