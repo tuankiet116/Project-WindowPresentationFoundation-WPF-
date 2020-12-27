@@ -28,8 +28,10 @@ namespace MyProject.ViewModel
         public ICommand StatisticalWindow { get; set; }
         public ICommand UnitWindow { get; set; }
         public ICommand UserListWindow { get; set; }
+        public ICommand AccountCreateWindow { get; set; }
         public ICommand CloseDialogCommand { get; set; }
         public ICommand AccountWindowCommand { get; set; }
+        public ICommand LoadEditCommand { get; set; }
 
         private bool isLoaded = false;
         public MainViewModel()
@@ -50,6 +52,7 @@ namespace MyProject.ViewModel
             StatisticalWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } StatisticalWindow wd = new StatisticalWindow(); wd.ShowDialog(); });
             UnitWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
             UserListWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UserListWindow wd = new UserListWindow(); wd.ShowDialog(); });
+            AccountCreateWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } AccountCreateWindow wd = new AccountCreateWindow(); wd.ShowDialog(); });
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)
@@ -75,6 +78,8 @@ namespace MyProject.ViewModel
                     }
                 }
             });
+
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
         }
 
         private void loadUserCurrentLogin()
@@ -95,6 +100,12 @@ namespace MyProject.ViewModel
             msg.Message = "Bạn Không Có Quyền Truy Cập! Vui Lòng Liên Hệ Quản Trị Viên!";
 
             DialogHost.Show(msg, "RootDialog");
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            AccountEditNotificationMessage account = new AccountEditNotificationMessage();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }

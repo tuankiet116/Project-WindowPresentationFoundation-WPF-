@@ -180,6 +180,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountCreateWindow.xaml.cs">
+      <DependentUpon>AccountCreateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,7 @@
     <Compile Include="UserListWindow.xaml.cs">
       <DependentUpon>UserListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AccountCreateViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
@@ -267,6 +271,10 @@
     <Compile Include="ViewModel\SellViewModel.cs" />
     <Compile Include="ViewModel\StatisticalViewModel.cs" />
     <Compile Include="ViewModel\SupplierViewModel.cs" />
+    <Page Include="AccountCreateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
