@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyProject.Model.NotificationHelper
 {
-    public class AccountEditNotificationMessage:NotificationMessage
+    public class AccountEditNotificationMessage : NotificationMessage
     {
         public AccountEditNotificationMessage()
         {

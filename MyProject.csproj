@@ -183,6 +183,9 @@
     <Compile Include="AccountCreateWindow.xaml.cs">
       <DependentUpon>AccountCreateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BillWindow.xaml.cs">
+      <DependentUpon>BillWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,7 @@
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BillModel.cs" />
+    <Compile Include="Model\NotificationHelper\AccountEditNotificationMessage.cs" />
     <Compile Include="Model\NotificationHelper\DeleteNotificationMessage.cs" />
     <Compile Include="Model\NotificationHelper\EditSupplier.cs" />
     <Compile Include="Model\NotificationHelper\ErrorNotificationMessage.cs" />
@@ -276,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="ViewModel\UnitViewModel.cs" />
+    <Page Include="BillWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

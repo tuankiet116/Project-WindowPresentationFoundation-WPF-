@@ -29,6 +29,7 @@ namespace MyProject.ViewModel
         public ICommand UnitWindow { get; set; }
         public ICommand UserListWindow { get; set; }
         public ICommand AccountCreateWindow { get; set; }
+        public ICommand BillWindow { get; set; }
         public ICommand CloseDialogCommand { get; set; }
         public ICommand AccountWindowCommand { get; set; }
         public ICommand LoadEditCommand { get; set; }
@@ -53,6 +54,7 @@ namespace MyProject.ViewModel
             UnitWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
             UserListWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } UserListWindow wd = new UserListWindow(); wd.ShowDialog(); });
             AccountCreateWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } AccountCreateWindow wd = new AccountCreateWindow(); wd.ShowDialog(); });
+            BillWindow = new RelayCommand<Window>((p) => { return true; }, (p) => { if (_UserIDRole != 1) { LoadDialogErrorNotPermission(); return; } BillWindow wd = new BillWindow(); wd.ShowDialog(); });
             LoadMainWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 if (!isLoaded)
