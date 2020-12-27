@@ -8,6 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i = "http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:model="clr-namespace:MyProject.Model.NotificationHelper"
+        xmlns:viewmodel="clr-namespace:MyProject.ViewModel.HelperViewModel"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -20,10 +21,11 @@
         DataContext="{StaticResource StatisticalViewModel}">
     <Window.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type model:AccountEditNotificationMessage}">
+            <DataTemplate DataType="{x:Type viewmodel:EditAccountViewModel}">
                 <StackPanel Margin="20" MinWidth="300">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -56,7 +58,9 @@
                                         Height="40"
                                         Width="200"
                                         Margin="0 0 0 15"
-                                        materialDesign:HintAssist.Hint="Tên hiển thị"/>
+                                        materialDesign:HintAssist.Hint="Tên hiển thị"
+                                        Text="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    />
                             </Grid>
                         </StackPanel>
 
@@ -76,7 +80,15 @@
                                         Height="40"
                                         Width="200"
                                         Margin="0 5 0 0"
-                                        materialDesign:HintAssist.Hint="Đổi mật khẩu" />
+                                        Name="NewPassword"
+                                        materialDesign:HintAssist.Hint="Mật Khẩu Mới" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PasswordChanged">
+                                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                           CommandParameter="{Binding ElementName=NewPassword}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </PasswordBox>
                             </Grid>
                         </StackPanel>
 
@@ -90,17 +102,53 @@
                                 <materialDesign:PackIcon Kind="LockCheck" Width="40" Height="40" Margin="20 20 10 0" Foreground="BlueViolet"/>
 
                                 <PasswordBox
+                                    Name="PasswordConfirm"
                                         Grid.Column="1"
                                         Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
                                         HorizontalAlignment="Center"
                                         Height="40"
                                         Width="200"
                                         Margin="0 20 0 0"
-                                        materialDesign:HintAssist.Hint="Nhập lại mật khẩu" />
+                                        materialDesign:HintAssist.Hint="Nhập lại mật khẩu" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PasswordChanged">
+                                            <i:InvokeCommandAction Command="{Binding PasswordConfirmChangedCommand}"
+                                           CommandParameter="{Binding ElementName=PasswordConfirm}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </PasswordBox>
                             </Grid>
                         </StackPanel>
 
-                        <Grid Grid.Row="4">
+                        <StackPanel Grid.Row="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:PackIcon Kind="LockCheck" Width="40" Height="40" Margin="20 20 10 0" Foreground="BlueViolet"/>
+
+                                <PasswordBox
+                                    Name="OldPassword"
+                                        Grid.Column="1"
+                                        Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
+                                        HorizontalAlignment="Center"
+                                        Height="40"
+                                        Width="200"
+                                        Margin="0 20 0 0"
+                                        materialDesign:HintAssist.Hint="Mật Khẩu Cũ" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PasswordChanged">
+                                            <i:InvokeCommandAction Command="{Binding OldPasswordChangedCommand}"
+                                           CommandParameter="{Binding ElementName=OldPassword}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </PasswordBox>
+                            </Grid>
+                        </StackPanel>
+
+                        <Grid Grid.Row="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
@@ -109,8 +157,8 @@
                             <Button 
                                 Grid.Column="0"
                                 Margin="5 30 5 5"
-                                Content="Xác Nhận"></Button>
-                            <!--Command="{x:Static materialDesign:DialogHost.AcceptDialogCommand}"-->
+                                Content="Xác Nhận"
+                                Command="{Binding ConfirmEdit}"></Button>
 
                             <Button
                                 Grid.Column="1"
@@ -119,6 +167,9 @@
                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
                         </Grid>
                     </Grid>
+                    <materialDesign:Snackbar 
+                        Message="{Binding Message}"
+                        IsActive="{Binding IsActiveSnackBar}"/>
                 </StackPanel>
             </DataTemplate>
         </ResourceDictionary>
