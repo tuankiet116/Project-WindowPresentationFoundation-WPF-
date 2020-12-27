@@ -11,4 +11,5 @@
     <viewmodel:UnitViewModel x:Key="UnitViewModel"></viewmodel:UnitViewModel>
     <viewmodel:ProductViewModel x:Key="ProductViewModel"></viewmodel:ProductViewModel>
     <viewmodel:SellViewModel x:Key="SellViewModel"></viewmodel:SellViewModel>
+    <viewmodel:RegisterViewModel x:Key="RegisterViewModel"></viewmodel:RegisterViewModel>
 </ResourceDictionary>

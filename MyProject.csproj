@@ -190,6 +190,8 @@
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BillModel.cs" />
+    <Compile Include="Model\ImportDetailModel.cs" />
+    <Compile Include="Model\ImportModel.cs" />
     <Compile Include="Model\NotificationHelper\DeleteNotificationMessage.cs" />
     <Compile Include="Model\NotificationHelper\EditSupplier.cs" />
     <Compile Include="Model\NotificationHelper\ErrorNotificationMessage.cs" />
@@ -264,6 +266,8 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\HelperViewModel\EditAccountViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\ImportViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

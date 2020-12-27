@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProject"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Height="588" Width="400"
-        Name="wdow"
+        Height="700" Width="400"
+        Name="wdow" DataContext="{StaticResource RegisterViewModel}"
         Title="Hệ Thống Quản Lý Bán Hàng">
     <Grid>
         <Grid.RowDefinitions>
@@ -32,18 +33,18 @@
         </Grid>
 
         <Grid Grid.Row="1" Background="LightSkyBlue">
-            <materialDesign:Card Margin="30">
+            <materialDesign:Card Margin="20"  HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
+                    <Grid Grid.Row="0" Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -55,7 +56,7 @@
                             <TextBox
                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                                 Height="40"
-                                Margin="5 20 55 0"
+                                Margin="5 20 55 0" Text="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 materialDesign:HintAssist.Hint="Tên hiển thị"></TextBox>
  
                         </StackPanel>
@@ -71,10 +72,12 @@
 
                         <StackPanel Grid.Column="1">
                             <ComboBox
-                                SelectedItem="{Binding SelectedSupplier}"
+                                ItemsSource="{Binding ListRole, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                DisplayMemberPath="Role"
                                 Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                 Height="40"
-                                Margin="5 20 55 0"
+                                Margin="5 20 55 0" 
                                 materialDesign:HintAssist.Hint="Chức vụ"></ComboBox>
                         
                         </StackPanel>
@@ -90,6 +93,7 @@
 
                         <StackPanel Grid.Column="1">
                             <TextBox
+                                Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                                 Height="40"
                                 Margin="5 20 55 0"
@@ -107,10 +111,18 @@
 
                         <StackPanel Grid.Column="1">
                             <PasswordBox
+                                Name="Password"
                                 Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
                                 Height="40"
                                 Margin="5 20 55 0"
-                                materialDesign:HintAssist.Hint="Mật khẩu"></PasswordBox>
+                                materialDesign:HintAssist.Hint="Mật khẩu">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                           CommandParameter="{Binding ElementName=Password}"></i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
                         </StackPanel>
                     </Grid>
 
@@ -124,10 +136,18 @@
 
                         <StackPanel Grid.Column="1">
                             <PasswordBox
+                                Name="PasswordConfirm"
                                 Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
                                 Height="40"
                                 Margin="5 20 55 0"
-                                materialDesign:HintAssist.Hint="Nhập lại mật khẩu"></PasswordBox>
+                                materialDesign:HintAssist.Hint="Nhập lại mật khẩu">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <i:InvokeCommandAction Command="{Binding PasswordConfirmChangedCommand}"
+                                           CommandParameter="{Binding ElementName=PasswordConfirm}"></i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
                         </StackPanel>
                     </Grid>
 
@@ -137,12 +157,19 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button Content="Đăng Ký" Grid.Column="0" Margin="15 5 5 5"></Button>
+                        <Button Content="Đăng Ký" Grid.Column="0" Margin="15 5 5 5"
+                                Command="{Binding Register}"></Button>
 
-                        <Button Content="Hủy" Grid.Column="1" Margin="5 5 15 5"></Button>
+                        <Button Content="Hủy" Grid.Column="1" Margin="5 5 15 5"
+                                Command="{Binding CloseCommand}"
+                                CommandParameter="{Binding ElementName=wdow}"></Button>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <materialDesign:Snackbar 
+                              Message="{Binding Message}"
+                              IsActive="{Binding IsActiveSnackBar}"/>
                     </Grid>
                 </Grid>
-                
             </materialDesign:Card>
         </Grid>
     </Grid>

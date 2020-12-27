@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyProject.Model;
 using MyProject.Model.NotificationHelper;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,7 +105,7 @@ namespace MyProject.ViewModel
 
         private void LoadDialogAccountEdit()
         {
-            AccountEditNotificationMessage account = new AccountEditNotificationMessage();
+            EditAccountViewModel account = new EditAccountViewModel();
             DialogHost.Show(account, "RootDialog");
         }
     }
