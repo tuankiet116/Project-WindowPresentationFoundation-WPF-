@@ -162,7 +162,7 @@
                                         HorizontalAlignment="Center"
                                         Height="40"
                                         Width="200"
-                                        Margin="0 20 0 0"
+                                        Margin="0 30 0 0"
                                         materialDesign:HintAssist.Hint="Mật Khẩu Cũ" >
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="PasswordChanged">
