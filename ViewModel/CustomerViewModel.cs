@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyProject.Model;
 using MyProject.Model.NotificationHelper;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,7 @@ namespace MyProject.ViewModel
         public ICommand DeleteCommand { get; set; }
         public ICommand ConfirmDelete { get; set; }
         public ICommand SearchCommand { get; set; }
+        public ICommand LoadEditCommand { get; set; }
 
         public CustomerViewModel()
         {
@@ -57,6 +59,8 @@ namespace MyProject.ViewModel
             Phone = null;
             loadUserCurrentLogin();
             ListCustomer = new List<CustomerTable>(DataProvider.Ins.Entities.CustomerTable);
+
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
 
             AddCommand = new RelayCommand<object>((p) =>
             {
@@ -226,6 +230,12 @@ namespace MyProject.ViewModel
             DeleteNotificationMessage msg = new DeleteNotificationMessage();
             msg.Message = "Cửa Hàng Đã Thực Hiện Giao Dịch Với Khách Hàng Này! Bạn Vui Lòng Xóa Thông Tin Ở Các Bản Ghi Liên Quan!";
             DialogHost.Show(msg, "CustomerDialog");
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            EditAccountViewModel account = new EditAccountViewModel();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }

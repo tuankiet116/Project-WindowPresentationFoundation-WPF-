@@ -380,6 +380,15 @@
 
                                         </ComboBox>
                                     </Grid>
+                                    <Grid Grid.Row="4">
+                                        <TextBox
+                                        Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        materialDesign:HintAssist.Hint="Giá Bán"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                        VerticalAlignment="Center"
+                                        Foreground="BlueViolet"
+                                        Margin="15 0 20 10"/>
+                                    </Grid>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
@@ -499,6 +508,9 @@
                                     <GridViewColumn Width="auto"
                                     DisplayMemberBinding="{Binding SupplierTable.DisplayName}"
                                     Header="Nhà cung cấp" />
+                                    <GridViewColumn Width="auto"
+                                    DisplayMemberBinding="{Binding Price}"
+                                    Header="Giá Bán" />
                                 </GridView>
                             </ListView.View>
                         </ListView>

@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyProject.Model;
 using MyProject.Model.NotificationHelper;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,9 @@ namespace MyProject.ViewModel
         public ICommand CreateBill { get; set; }
         public ICommand PhoneCustomerChange { get; set; }
         public ICommand DestroyCommand { get; set; }
+        public ICommand OpenBillWindow { get; set; }
+
+        public ICommand LoadEditCommand { get; set; }
 
         public SellViewModel()
         {
@@ -74,6 +78,8 @@ namespace MyProject.ViewModel
             ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable);
             ListBill = new List<BillModel>();
             _ListTemp = new List<BillModel>();
+
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
 
             AddBillCommand = new RelayCommand<object>((p) =>
             {
@@ -92,9 +98,8 @@ namespace MyProject.ViewModel
                 billProduct.DisplayName = SelectedItems.DisplayName;
                 billProduct.SupplierTable = SelectedItems.SupplierTable;
                 billProduct.UnitTable = SelectedItems.UnitTable;
-                billProduct.Image = SelectedItems.Image;
                 int Price = 0;
-                var listPrice = DataProvider.Ins.Entities.InputDetailTable.Where(x => x.ID_Product == SelectedItems.ID).Select(x=>x.PriceSale);
+                var listPrice = DataProvider.Ins.Entities.ProductTable.Where(x => x.ID == SelectedItems.ID).Select(x=>x.Price);
 
                 foreach(var item in listPrice)
                 {
@@ -109,7 +114,7 @@ namespace MyProject.ViewModel
 
                 if (LoadInventory(bill.product.ID) <= 0)
                 {
-                    LoadDialogError();
+                    LoadDialogError("Sản Phẩm Không Còn Trong Kho! Vui Lòng Liên Hệ Quản Trị Viên!");
                     return;
                 }
 
@@ -194,6 +199,15 @@ namespace MyProject.ViewModel
             },
             (p) =>
             {
+                foreach(var item in _ListTemp)
+                {
+                    if(LoadInventory(item.product.ID) - item.Amount < 0)
+                    {
+                        LoadDialogError("Số Lượng Sản Phẩm Không Đủ Đáp Ứng Nhu Cầu!");
+                        return;
+                    }
+                }
+
                 if (IsEnableName)
                 {
                     CustomerTable customer = new CustomerTable();
@@ -221,6 +235,10 @@ namespace MyProject.ViewModel
                     outPutDetail.Count = item.Amount;
                     outPutDetail.ID_Product = item.product.ID;
                     outPutDetail.ID_Output = ID;
+                    outPutDetail.Price = item.Price;
+                    outPutDetail.TotalPrice = item.PriceItems;
+                    DataProvider.Ins.Entities.OutPutDetailTable.Add(outPutDetail);
+                    DataProvider.Ins.Entities.SaveChanges();
                 }
                 LoadDialogSuccessSale();
                 TotalPrice = 0;
@@ -260,6 +278,17 @@ namespace MyProject.ViewModel
                 List = new List<ProductTable>(DataProvider.Ins.Entities.ProductTable.Where(
                     x => x.DisplayName.ToLower().Contains(SearchTerm)
                         || x.SupplierTable.DisplayName.ToLower().Contains(SearchTerm) || x.UnitTable.Descriptions.ToLower().Contains(SearchTerm)));
+            });
+
+            OpenBillWindow = new RelayCommand<Window>((p) =>
+            {
+                return true;
+            },
+            (p) =>
+            {
+                p.Close();
+                BillWindow wd = new BillWindow();
+                wd.ShowDialog();
             });
         }
 
@@ -318,13 +347,19 @@ namespace MyProject.ViewModel
             DialogHost.Show(msg, "SellDialog");
         }
 
-        private void LoadDialogError()
+        private void LoadDialogError(string Message)
         {
             ErrorNotificationMessage msg = new ErrorNotificationMessage();
             msg.Title = "Lỗi";
-            msg.Message = "Sản Phẩm Không Còn Trong Kho! Vui Lòng Liên Hệ Quản Trị Viên!";
+            msg.Message = Message;
 
             DialogHost.Show(msg, "SellDialog");
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            EditAccountViewModel account = new EditAccountViewModel();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }

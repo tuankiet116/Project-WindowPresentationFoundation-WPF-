@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyProject.Model;
 using MyProject.Model.NotificationHelper;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace MyProject.ViewModel
         private string _Message;
         private bool _IsActiveSnackBar;
         private string _SearchTerm;
+        private int _Price;
 
         public string SearchTerm { get { return _SearchTerm; } set { _SearchTerm = value; OnPropertyChanged(); } }
         public string Message { get { return _Message; } set { _Message = value; OnPropertyChanged(); } }
@@ -35,6 +37,7 @@ namespace MyProject.ViewModel
         public List<ProductTable> List { get { return _List; } set { _List = value; OnPropertyChanged(); } }
         public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         public string DisplayName { get { return _DisplayName; } set { _DisplayName = value; OnPropertyChanged(); } }
+        public int Price { get { return _Price; } set { _Price = value; OnPropertyChanged(); } }
         public UnitTable Unit { get { return _Unit; } set { _Unit = value; OnPropertyChanged(); } }
         public SupplierTable Supplier { get { return _Supplier; } set { _Supplier = value; OnPropertyChanged(); } }
         public List<SupplierTable> ListSupplier { get { return _ListSupplier; } set { _ListSupplier = value; OnPropertyChanged(); } }
@@ -47,6 +50,7 @@ namespace MyProject.ViewModel
                     DisplayName = SelectedItems.DisplayName;
                     Unit = SelectedItems.UnitTable;
                     Supplier = SelectedItems.SupplierTable;
+                    Price = SelectedItems.Price;
                     OnPropertyChanged();
                 }
             } 
@@ -57,12 +61,16 @@ namespace MyProject.ViewModel
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCommand { get; set; }
 
+        public ICommand LoadEditCommand { get; set; }
+
         public ProductViewModel()
         {
             loadUserCurrentLogin();
             List = new List<ProductTable>(DataProvider.Ins.Entities.ProductTable);
             ListSupplier = new List<SupplierTable>(DataProvider.Ins.Entities.SupplierTable);
             ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable);
+
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
 
             AddCommand = new RelayCommand<object>((p) =>
             {
@@ -71,7 +79,7 @@ namespace MyProject.ViewModel
                 if (string.IsNullOrEmpty(DisplayName) || Unit == null || Supplier == null)
                     return false;
 
-                if (products.Count() != 0 || products == null)
+                if (products.Count() != 0 || products == null || Price == 0)
                     return false;
 
                 return true;
@@ -81,7 +89,7 @@ namespace MyProject.ViewModel
                 newProduct.DisplayName = DisplayName;
                 newProduct.ID_Unit = Unit.ID;
                 newProduct.ID_Supplier = Supplier.ID;
-                newProduct.Image = "none";
+                newProduct.Price = Price;
 
                 DataProvider.Ins.Entities.ProductTable.Add(newProduct);
                 DataProvider.Ins.Entities.SaveChanges();
@@ -91,6 +99,7 @@ namespace MyProject.ViewModel
                 Unit = null;
                 Supplier = null;
                 SelectedItems = null;
+                Price = 0;
 
                 IsActiveSnackBar = true;
                 Message = "Thêm Thành Công!";
@@ -123,6 +132,7 @@ namespace MyProject.ViewModel
                 EditItem.DisplayName = DisplayName;
                 EditItem.ID_Supplier = Supplier.ID;
                 EditItem.ID_Unit = Unit.ID;
+                EditItem.Price = Price;
 
                 DataProvider.Ins.Entities.SaveChanges();
                 List = new List<ProductTable>(DataProvider.Ins.Entities.ProductTable);
@@ -131,6 +141,7 @@ namespace MyProject.ViewModel
                 Unit = null;
                 Supplier = null;
                 SelectedItems = null;
+                Price = 0;
 
                 IsActiveSnackBar = true;
                 Message = "Sửa Thành Công!";
@@ -177,6 +188,7 @@ namespace MyProject.ViewModel
                     Unit = null;
                     Supplier = null;
                     SelectedItems = null;
+                    Price = 0;
                     LoadDialogErrorDelete();
                     return;
                 }
@@ -192,6 +204,7 @@ namespace MyProject.ViewModel
                 Unit = null;
                 Supplier = null;
                 SelectedItems = null;
+                Price = 0;
 
                 IsActiveSnackBar = true;
                 Message = "Xóa Thành Công!";
@@ -244,6 +257,12 @@ namespace MyProject.ViewModel
             DeleteNotificationMessage msg = new DeleteNotificationMessage();
             msg.Message = "Sản Phẩm Này Đã Được Thực Hiện Giao Dịch! Bạn Vui Lòng Xóa Thông Tin Ở Các Bản Ghi Liên Quan!";
             DialogHost.Show(msg, "ProductDialog");
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            EditAccountViewModel account = new EditAccountViewModel();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }

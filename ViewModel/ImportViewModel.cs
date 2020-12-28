@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyProject.Model;
 using MyProject.Model.NotificationHelper;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,6 @@ namespace MyProject.ViewModel
         private List<ImportDetailModel> _ListInputDetail;
         private ProductTable _SelectedProduct;
         private int _InputPrice;
-        private int _Price;
         private int _Amount;
         private string _Status;
         private string _SearchTermInput;
@@ -39,9 +39,9 @@ namespace MyProject.ViewModel
                 _SelectedItemInput = value; 
                 if(SelectedItemInput != null)
                 {
+                    ListProduct = new List<ProductTable>(DataProvider.Ins.Entities.ProductTable);
                     SelectedItemInputDetail = null;
                     InputPrice = 0;
-                    Price = 0;
                     Status = null;
                     Amount = 0;
                     SelectedProduct = null;
@@ -55,8 +55,8 @@ namespace MyProject.ViewModel
                         detail.InputDetail = item;
                         detail.Product = product;
                         ListInputDetail.Add(detail);
-                    }
-                    OnPropertyChanged(); 
+                        
+                    }OnPropertyChanged();
                 }
             } }
         public ImportDetailModel SelectedItemInputDetail { get { return _SelectedItemInputDetail; } set { 
@@ -64,7 +64,6 @@ namespace MyProject.ViewModel
                 if(SelectedItemInputDetail != null)
                 {
                     InputPrice = SelectedItemInputDetail.InputDetail.PriceInput;
-                    Price = SelectedItemInputDetail.InputDetail.PriceSale;
                     Amount = SelectedItemInputDetail.InputDetail.Amount;
                     Status = SelectedItemInputDetail.InputDetail.Status;
                     SelectedProduct = SelectedItemInputDetail.Product;
@@ -76,7 +75,6 @@ namespace MyProject.ViewModel
         public string SearchTermInputDetail { get { return _SearchTermInputDetail; } set { _SearchTermInputDetail = value; OnPropertyChanged(); } }
         public ProductTable SelectedProduct { get { return _SelectedProduct; } set { _SelectedProduct = value; OnPropertyChanged(); } }
         public int InputPrice { get { return _InputPrice; } set { _InputPrice = value; OnPropertyChanged(); } }
-        public int Price { get { return _Price; } set { _Price = value; OnPropertyChanged(); } }
         public int Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
         public string Status { get { return _Status; } set { _Status = value; OnPropertyChanged(); } }
 
@@ -90,6 +88,8 @@ namespace MyProject.ViewModel
 
         public ICommand SearchCommand { get; set; }
         public ICommand SearchDetailCommand { get; set; }
+
+        public ICommand LoadEditCommand { get; set; }
 
         private int ID_CurrentUser = (int)App.Current.Properties["UserID"];
 
@@ -128,9 +128,11 @@ namespace MyProject.ViewModel
 
             });
 
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
+
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (Amount == 0 || Price == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status))
+                if (Amount == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status))
                 {
                     return false;
                 }
@@ -151,9 +153,9 @@ namespace MyProject.ViewModel
                 detailItem.ID_Input = SelectedItemInput.input.ID;
                 detailItem.ID_Product = SelectedProduct.ID;
                 detailItem.PriceInput = InputPrice;
-                detailItem.PriceSale = Price;
                 detailItem.Status = Status;
                 detailItem.Amount = Amount;
+                detailItem.TotalPrice = Amount * InputPrice;
                 DataProvider.Ins.Entities.InputDetailTable.Add(detailItem);
                 DataProvider.Ins.Entities.SaveChanges();
 
@@ -171,7 +173,6 @@ namespace MyProject.ViewModel
 
                 SelectedItemInputDetail = null;
                 InputPrice = 0;
-                Price = 0;
                 Status = null;
                 Amount = 0;
                 SelectedProduct = null;
@@ -188,7 +189,7 @@ namespace MyProject.ViewModel
 
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (Amount == 0 || Price == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status) || SelectedProduct == null)
+                if (Amount == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status) || SelectedProduct == null)
                 {
                     return false;
                 }
@@ -207,9 +208,9 @@ namespace MyProject.ViewModel
                 InputDetailTable detailItem = DataProvider.Ins.Entities.InputDetailTable.Where(x => x.ID == SelectedItemInputDetail.InputDetail.ID).FirstOrDefault();
                 detailItem.ID_Product = SelectedProduct.ID;
                 detailItem.PriceInput = InputPrice;
-                detailItem.PriceSale = Price;
                 detailItem.Status = Status;
                 detailItem.Amount = Amount;
+                detailItem.TotalPrice = Amount * InputPrice;
                 DataProvider.Ins.Entities.SaveChanges();
 
                 ListInputDetail = new List<ImportDetailModel>();
@@ -226,7 +227,6 @@ namespace MyProject.ViewModel
 
                 SelectedItemInputDetail = null;
                 InputPrice = 0;
-                Price = 0;
                 Status = null;
                 Amount = 0;
                 SelectedProduct = null;
@@ -242,7 +242,7 @@ namespace MyProject.ViewModel
 
             DeleteCommand = new RelayCommand<object>((p) =>
             {
-                if (Amount == 0 || Price == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status) || SelectedProduct == null)
+                if (Amount == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status) || SelectedProduct == null)
                 {
                     return false;
                 }
@@ -257,7 +257,7 @@ namespace MyProject.ViewModel
 
             DeleteConfirmCommand = new RelayCommand<object>((p) =>
             {
-                if (Amount == 0 || Price == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status) || SelectedProduct == null)
+                if (Amount == 0 || InputPrice == 0 || string.IsNullOrEmpty(Status) || SelectedProduct == null)
                 {
                     return false;
                 }
@@ -266,11 +266,6 @@ namespace MyProject.ViewModel
             }, (p) =>
             {
                 InputDetailTable detailItem = DataProvider.Ins.Entities.InputDetailTable.Where(x => x.ID == SelectedItemInputDetail.InputDetail.ID).FirstOrDefault();
-                detailItem.ID_Product = SelectedProduct.ID;
-                detailItem.PriceInput = InputPrice;
-                detailItem.PriceSale = Price;
-                detailItem.Status = Status;
-                detailItem.Amount = Amount;
                 DataProvider.Ins.Entities.InputDetailTable.Remove(detailItem);
                 DataProvider.Ins.Entities.SaveChanges();
 
@@ -289,7 +284,6 @@ namespace MyProject.ViewModel
 
                 SelectedItemInputDetail = null;
                 InputPrice = 0;
-                Price = 0;
                 Status = null;
                 Amount = 0;
                 SelectedProduct = null;
@@ -320,19 +314,18 @@ namespace MyProject.ViewModel
                 DataProvider.Ins.Entities.InputTable.Remove(SelectedItemInput.input);
                 DataProvider.Ins.Entities.SaveChanges();
 
-                LoadImportData();
-                DialogHost.CloseDialogCommand.Execute(null, null);
-
                 SelectedItemInput = null;
                 SelectedItemInputDetail = null;
                 InputPrice = 0;
-                Price = 0;
                 Status = null;
                 Amount = 0;
                 SelectedProduct = null;
 
                 IsActiveSnackBar = true;
                 Message = "Xóa Phiếu Nhập Thành Công!";
+
+                LoadImportData();
+
                 System.Timers.Timer timer = new System.Timers.Timer();
                 timer.Interval = 5000;
                 timer.Enabled = true;
@@ -394,7 +387,7 @@ namespace MyProject.ViewModel
                 ListInputDetail = new List<ImportDetailModel>(Result.Where(
                     x => x.Product.DisplayName.ToLower().Contains(SearchTermInputDetail)
                         || x.InputDetail.Amount.ToString().ToLower().Contains(SearchTermInputDetail) || x.InputDetail.PriceInput.ToString().ToLower().Contains(SearchTermInputDetail)
-                        || x.InputDetail.PriceSale.ToString().ToLower().Contains(SearchTermInputDetail) || x.InputDetail.Status.Contains(SearchTermInputDetail)
+                        || x.InputDetail.Status.Contains(SearchTermInputDetail)
                     ));
 
             });
@@ -431,6 +424,12 @@ namespace MyProject.ViewModel
         private void ShowSnackBar(Object source, System.Timers.ElapsedEventArgs e)
         {
             IsActiveSnackBar = false;
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            EditAccountViewModel account = new EditAccountViewModel();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }

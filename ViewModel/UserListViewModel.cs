@@ -11,28 +11,33 @@ using System.Windows.Input;
 
 namespace MyProject.ViewModel
 {
-    public class UnitViewModel:BaseViewModel
-    {   
-        private List<UnitTable> _ListUnit;
-        private UnitTable _SelectedItems;
+    public class UserListViewModel:BaseViewModel
+    {
+        private List<UserTable> _ListUser;
+        private UserTable _SelectedItems;
         private int _ID_Unit;
-        private string _Descriptions;
+        private string _DisplayName;
         private string _Message;
         private bool _IsActiveSnackBar;
         private string _SearchTerm;
 
         private string _UserDisplayName;
-        private int _UserIDRole;
+        private string _UserRole;
+        private RoleTable _Role;
+        private List<RoleTable> _ListRole;
 
         public string UserDisplayName { get { return _UserDisplayName; } set { _UserDisplayName = value; OnPropertyChanged(); } }
-        public string Descriptions { get { return _Descriptions; } set { _Descriptions = value; OnPropertyChanged(); } }
+        public string DisplayName { get { return _DisplayName; } set { _DisplayName = value; OnPropertyChanged(); } }
         public string SearchTerm { get { return _SearchTerm; } set { _SearchTerm = value; OnPropertyChanged(); } }
+        public RoleTable Role { get { return _Role; } set { _Role = value; OnPropertyChanged(); } }
+        public List<RoleTable> ListRole { get { return _ListRole; } set { _ListRole = value; OnPropertyChanged(); } }
+        public string UserRole { get { return _UserRole; } set { _UserRole = value; OnPropertyChanged(); } }
 
         public string Message { get { return _Message; } set { _Message = value; OnPropertyChanged(); } }
         public bool IsActiveSnackBar { get { return _IsActiveSnackBar; } set { _IsActiveSnackBar = value; OnPropertyChanged(); } }
 
-        public List<UnitTable> ListUnit { get { return _ListUnit; } set { _ListUnit = value; OnPropertyChanged(); } }
-        public UnitTable SelectedItems
+        public List<UserTable> ListUser { get { return _ListUser; } set { _ListUser = value; OnPropertyChanged(); } }
+        public UserTable SelectedItems
         {
             get { return _SelectedItems; }
             set
@@ -40,84 +45,56 @@ namespace MyProject.ViewModel
                 _SelectedItems = value;
                 if (SelectedItems != null)
                 {
-                    Descriptions = SelectedItems.Descriptions;
+                    DisplayName = SelectedItems.DisplayName;
                     _ID_Unit = SelectedItems.ID;
+                    Role = DataProvider.Ins.Entities.RoleTable.Where(x => x.ID == SelectedItems.ID_Role).SingleOrDefault();
                     OnPropertyChanged();
                 }
             }
         }
 
-        public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand LoadEditCommand { get; set; }
 
-        public UnitViewModel()
+        public UserListViewModel()
         {
-            Descriptions = null;
-            ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable);
+            DisplayName = null;
+            ListUser = new List<UserTable>(DataProvider.Ins.Entities.UserTable);
+            ListRole = new List<RoleTable>(DataProvider.Ins.Entities.RoleTable);
+
+            loadUserCurrentLogin();
 
             LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
 
-            AddCommand = new RelayCommand<object>((p) =>
-            {
-                var Unit = DataProvider.Ins.Entities.UnitTable.Where(x => x.Descriptions == Descriptions);
-
-                if (string.IsNullOrEmpty(Descriptions))
-                    return false;
-
-                if (Unit.Count() != 0 || Unit == null)
-                    return false;
-
-                return true;
-            }, (p) =>
-            {
-                var newUnit = new UnitTable();
-                newUnit.Descriptions = Descriptions;
-
-                DataProvider.Ins.Entities.UnitTable.Add(newUnit);
-                DataProvider.Ins.Entities.SaveChanges();
-                ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable);
-
-                Descriptions = null;
-                SelectedItems = null;
-
-                IsActiveSnackBar = true;
-                Message = "Thêm Thành Công!";
-
-                System.Timers.Timer timer = new System.Timers.Timer();
-                timer.Interval = 3000;
-                timer.Enabled = true;
-                timer.Elapsed += ShowSnackBar;
-                timer.Start();
-            });
-
             EditCommand = new RelayCommand<object>((p) =>
             {
-                var Unit = DataProvider.Ins.Entities.UnitTable.Where(x => x.Descriptions == Descriptions);
+                var USer = DataProvider.Ins.Entities.UserTable.Where(x => x.UserName == SelectedItems.UserName);
 
-                if (string.IsNullOrEmpty(Descriptions))
+                if (string.IsNullOrEmpty(DisplayName) || Role == null)
                     return false;
 
-                if (Unit == null || SelectedItems == null)
+                if (USer == null || SelectedItems == null)
                     return false;
 
                 return true;
             }, (p) =>
             {
-                UnitTable EditItem = DataProvider.Ins.Entities.UnitTable.Where(x => x.ID == SelectedItems.ID).SingleOrDefault();
+                UserTable EditItem = DataProvider.Ins.Entities.UserTable.Where(x => x.ID == SelectedItems.ID).SingleOrDefault();
                 if (EditItem == null)
                 {
                     return;
                 }
-                EditItem.Descriptions = Descriptions;
+                EditItem.DisplayName = DisplayName;
+                EditItem.ID_Role = Role.ID;
 
                 DataProvider.Ins.Entities.SaveChanges();
-                ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable);
+                ListUser = new List<UserTable>(DataProvider.Ins.Entities.UserTable);
 
-                Descriptions = null;
+                DisplayName = null;
                 SelectedItems = null;
+                Role = null;
 
                 IsActiveSnackBar = true;
                 Message = "Sửa Thành Công!";
@@ -131,9 +108,9 @@ namespace MyProject.ViewModel
 
             DeleteCommand = new RelayCommand<object>((p) =>
             {
-                var Unit = DataProvider.Ins.Entities.UnitTable.Where(x => x.Descriptions == Descriptions);
+                var Unit = DataProvider.Ins.Entities.UserTable.Where(x => x.UserName == SelectedItems.UserName);
 
-                if (string.IsNullOrEmpty(Descriptions))
+                if (string.IsNullOrEmpty(DisplayName) || Role == null)
                     return false;
 
                 if (Unit == null || SelectedItems == null)
@@ -142,28 +119,30 @@ namespace MyProject.ViewModel
                 return true;
             }, (p) =>
             {
-                UnitTable DeleteItem = DataProvider.Ins.Entities.UnitTable.Where(x => x.ID == SelectedItems.ID).SingleOrDefault();
+                UserTable DeleteItem = DataProvider.Ins.Entities.UserTable.Where(x => x.ID == SelectedItems.ID).SingleOrDefault();
 
-                var listProduct = DataProvider.Ins.Entities.ProductTable.Where(x => x.ID_Unit == SelectedItems.ID);
+                var listUserInput = DataProvider.Ins.Entities.InputTable.Where(x => x.ID_User == SelectedItems.ID);
+                var listUserOutput = DataProvider.Ins.Entities.OutputTable.Where(x => x.ID_User == SelectedItems.ID);
 
                 if (DeleteItem == null)
                 {
                     return;
                 }
 
-                if (listProduct.Count() > 0)
+                if (listUserInput.Count() > 0 || listUserOutput.Count()>0)
                 {
                     SelectedItems = null;
                     LoadDialogErrorDelete();
                     return;
                 }
 
-                DataProvider.Ins.Entities.UnitTable.Remove(DeleteItem);
+                DataProvider.Ins.Entities.UserTable.Remove(DeleteItem);
                 DataProvider.Ins.Entities.SaveChanges();
 
-                ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable);
+                ListUser = new List<UserTable>(DataProvider.Ins.Entities.UserTable);
 
-                Descriptions = null;
+                Role = null;
+                DisplayName = null;
                 SelectedItems = null;
 
                 IsActiveSnackBar = true;
@@ -187,10 +166,12 @@ namespace MyProject.ViewModel
                     return;
                 }
 
-                ListUnit = new List<UnitTable>(DataProvider.Ins.Entities.UnitTable.Where(
-                    x => x.Descriptions.ToLower().Contains(SearchTerm)));
+                ListUser = new List<UserTable>(DataProvider.Ins.Entities.UserTable.Where(
+                    x => x.DisplayName.ToLower().Contains(SearchTerm) && x.UserName.ToLower().Contains(SearchTerm) 
+                    && x.RoleTable.Role.ToLower().Contains(SearchTerm)));
 
             });
+            
         }
 
         private void loadUserCurrentLogin()
@@ -201,7 +182,7 @@ namespace MyProject.ViewModel
             foreach (var item in UserInformation)
             {
                 UserDisplayName = item.DisplayName;
-                _UserIDRole = (int)item.ID_Role;
+                _UserRole = item.RoleTable.Role;
             }
         }
 
@@ -213,13 +194,13 @@ namespace MyProject.ViewModel
         private void LoadDialogErrorDelete()
         {
             DeleteNotificationMessage msg = new DeleteNotificationMessage();
-            msg.Message = "Đơn Vị Đo Này Hiện Đang Được Sử Dụng Cho Các Sản Phẩm Khác ! Bạn Vui Lòng Xóa Thông Tin Ở Các Bản Ghi Liên Quan!";
-            DialogHost.Show(msg, "UnitDialog");
+            msg.Message = "Nhân Viên Đã Có Hoạt ĐỘng ! Bạn Vui Lòng Xóa Thông Tin Ở Các Bản Ghi Liên Quan!";
+            DialogHost.Show(msg, "UserDialog");
         }
 
         private void LoadDialogAccountEdit()
         {
-            HelperViewModel.EditAccountViewModel account = new EditAccountViewModel();
+            EditAccountViewModel account = new EditAccountViewModel();
             DialogHost.Show(account, "RootDialog");
         }
     }

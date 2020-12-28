@@ -29,6 +29,5 @@ namespace MyProject.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OutPutDetailTable> OutPutDetailTable { get; set; }
         public virtual UserTable UserTable { get; set; }
-        public DateTime DateInput { get; internal set; }
     }
 }

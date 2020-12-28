@@ -18,6 +18,8 @@ namespace MyProject.Model
         public int ID_Output { get; set; }
         public int ID_Product { get; set; }
         public int Count { get; set; }
+        public int Price { get; set; }
+        public int TotalPrice { get; set; }
         public string Status { get; set; }
     
         public virtual OutputTable OutputTable { get; set; }

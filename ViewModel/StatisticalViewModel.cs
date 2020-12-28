@@ -1,10 +1,13 @@
-﻿using MyProject.Model;
+﻿using MaterialDesignThemes.Wpf;
+using MyProject.Model;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MyProject.ViewModel
 {
@@ -30,6 +33,8 @@ namespace MyProject.ViewModel
         public int AmountCustomer  { get { return _AmountCustomer; } set { _AmountCustomer = value; OnPropertyChanged(); } }
         public int AmountSale { get { return _AmountSale; } set { _AmountSale = value; OnPropertyChanged();} }
 
+        public ICommand LoadEditCommand { get; set; }
+
         public StatisticalViewModel()
         {
             loadUserCurrentLogin();
@@ -40,6 +45,7 @@ namespace MyProject.ViewModel
 
         private void loadDataInventory()
         {
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
             ListInventory = new ObservableCollection<StatiscalModel>();
             var ProductList = DataProvider.Ins.Entities.ProductTable;
             foreach(var item in ProductList)
@@ -101,6 +107,12 @@ namespace MyProject.ViewModel
                 UserDisplayName = item.DisplayName;
                 _UserIDRole = (int)item.ID_Role;
             }
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            EditAccountViewModel account = new EditAccountViewModel();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }

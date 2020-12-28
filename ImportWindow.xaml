@@ -446,33 +446,15 @@
                                                 Foreground="BlueViolet"
                                                 Margin="10 -6 15 0"/>
                                             </Grid>
-                                            <Grid Grid.Row="2" Margin="5">
-                                                <TextBox
-                                                Text="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                materialDesign:HintAssist.Hint="Trạng thái"
-                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                                VerticalAlignment="Center"
-                                                Foreground="BlueViolet"
-                                                Margin="10 -18 15 0"/>
-                                            </Grid>
+                                            
                                         </Grid>
 
                                         <Grid Grid.Column="1">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition></RowDefinition>
                                                 <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0" Margin="5">
-                                                <TextBox
-                                                Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                materialDesign:HintAssist.Hint="Giá Bán"
-                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                                VerticalAlignment="Center"
-                                                Foreground="BlueViolet"
-                                                Margin="10 -8 15 1"/>
-                                            </Grid>
-                                            <Grid Grid.Row="1" Margin="5">
                                                 <TextBox
                                                 Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 materialDesign:HintAssist.Hint="Số lượng"
@@ -480,6 +462,15 @@
                                                 VerticalAlignment="Center"
                                                 Foreground="BlueViolet"
                                                 Margin="10 -10 15 10"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1" Margin="5">
+                                                <TextBox
+                                                Text="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                materialDesign:HintAssist.Hint="Trạng thái"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                VerticalAlignment="Center"
+                                                Foreground="BlueViolet"
+                                                Margin="10 -18 15 0"/>
                                             </Grid>
                                         </Grid>
                                     </Grid>
@@ -584,8 +575,8 @@
                     <materialDesign:Card Grid.Row="1" Margin="10 0 10 10">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="auto">
                             <ListView
-                        ItemsSource="{Binding ListInputDetail}"
-                        SelectedItem="{Binding SelectedItemInputDetail, Mode=OneWayToSource}">
+                        ItemsSource="{Binding ListInputDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedItemInputDetail, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn
@@ -601,8 +592,8 @@
                                         DisplayMemberBinding="{Binding InputDetail.PriceInput}"
                                         Header="Giá nhập" />
                                         <GridViewColumn
-                                        DisplayMemberBinding="{Binding InputDetail.PriceSale}"
-                                        Header="Giá Bán" />
+                                        DisplayMemberBinding="{Binding InputDetail.TotalPrice}"
+                                        Header="Tổng Tiền" />
                                         <GridViewColumn
                                         DisplayMemberBinding="{Binding InputDetail.Amount}"
                                         Header="Số lượng" />

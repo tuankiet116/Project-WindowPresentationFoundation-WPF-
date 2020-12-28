@@ -231,6 +231,36 @@
                         IsActive="{Binding IsActiveSnackBar}"/>
                 </StackPanel>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type model:ErrorNotificationMessage}">
+                <StackPanel Margin="20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Kind="Error"
+                                                 Foreground="Red"
+                                                 Height="48"
+                                                 Width="48"
+                                                 Margin="20, 25, 20, 20"
+                                                 Grid.Column="0" />
+                        <StackPanel Margin="20"
+                                    Grid.Column="1"
+                                    MinWidth="300">
+                            <TextBlock Text="{Binding Title}"
+                                       Style="{StaticResource MaterialDesignCaptionTextBlock}"></TextBlock>
+                            <TextBlock Text="{Binding Message}"
+                                       Margin="0,20,0,0"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Button Width="100" Content="Okey"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></Button>
+                    </Grid>
+
+                </StackPanel>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <materialDesign:DialogHost x:Name="DialogHost"
@@ -679,7 +709,8 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Button Margin="10 0 5 10" Height="40" Grid.Column="0" FontWeight="Bold" Background="#0288d1" Command="{Binding BillWindow}">
+                            <Button Margin="10 0 5 10" Height="40" Grid.Column="0" FontWeight="Bold" Background="#0288d1" 
+                                    Command="{Binding OpenBillWindow}" CommandParameter="{Binding ElementName=wdow}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition></ColumnDefinition>
@@ -695,7 +726,7 @@
                             </Button>
 
                             <Button Margin="5 0 10 10" Height="40" Grid.Column="1" FontWeight="Bold" Background="#d50000"
-                                    Command="{Binding }">
+                                    Command="{Binding DestroyCommand}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition></ColumnDefinition>

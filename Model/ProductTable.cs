@@ -23,9 +23,9 @@ namespace MyProject.Model
     
         public int ID { get; set; }
         public string DisplayName { get; set; }
-        public string Image { get; set; }
         public int ID_Unit { get; set; }
         public int ID_Supplier { get; set; }
+        public int Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InputDetailTable> InputDetailTable { get; set; }

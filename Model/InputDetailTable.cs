@@ -18,8 +18,8 @@ namespace MyProject.Model
         public int ID_Input { get; set; }
         public int ID_Product { get; set; }
         public int PriceInput { get; set; }
-        public int PriceSale { get; set; }
         public int Amount { get; set; }
+        public int TotalPrice { get; set; }
         public string Status { get; set; }
     
         public virtual InputTable InputTable { get; set; }

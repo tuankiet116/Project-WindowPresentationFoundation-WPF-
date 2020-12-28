@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyProject.Model;
 using MyProject.Model.NotificationHelper;
+using MyProject.ViewModel.HelperViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,7 @@ namespace MyProject.ViewModel
         public ICommand DeleteCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand LoadEditCommand { get; set; }
 
         public SupplierViewModel()
         {
@@ -72,6 +74,8 @@ namespace MyProject.ViewModel
 
             loadUserCurrentLogin();
             ListSupplier = new List<SupplierTable>(DataProvider.Ins.Entities.SupplierTable);
+
+            LoadEditCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDialogAccountEdit(); });
 
             AddCommand = new RelayCommand<object>((p) =>
             {
@@ -261,6 +265,8 @@ namespace MyProject.ViewModel
         private void LoadDialogEdit()
         {
             EditSupplier dialog = new EditSupplier();
+            if (SelectedItems == null)
+                return;
             dialog.ID = SelectedItems.ID;
             dialog.ContractDay = SelectedItems.ContractDay;
             dialog.DisplayName = SelectedItems.DisplayName;
@@ -275,6 +281,12 @@ namespace MyProject.ViewModel
             DeleteNotificationMessage msg = new DeleteNotificationMessage();
             msg.Message = "Cửa Hàng Đã Thực Hiện Giao Dịch Với Nhà Cung Cấp! Bạn Vui Lòng Xóa Thông Tin Ở Các Bản Ghi Liên Quan!";
             DialogHost.Show(msg, "SupplierDialog");
+        }
+
+        private void LoadDialogAccountEdit()
+        {
+            EditAccountViewModel account = new EditAccountViewModel();
+            DialogHost.Show(account, "RootDialog");
         }
     }
 }
